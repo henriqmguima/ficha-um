@@ -1,0 +1,313 @@
+CRITICAL - 2025-06-22 16:14:20 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "fila/consulta.php"
+[Method: GET, Route: fila]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('fila/consulta.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('fila/consulta', [], true)
+ 3 APPPATH\Controllers\Fila.php(11): view('fila/consulta')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Fila->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Fila))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+CRITICAL - 2025-06-22 16:14:29 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "fila/consulta.php"
+[Method: GET, Route: fila]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('fila/consulta.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('fila/consulta', [], true)
+ 3 APPPATH\Controllers\Fila.php(11): view('fila/consulta')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Fila->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Fila))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+CRITICAL - 2025-06-22 16:14:50 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "fila/consulta.php"
+[Method: GET, Route: fila]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('fila/consulta.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('fila/consulta', [], true)
+ 3 APPPATH\Controllers\Fila.php(11): view('fila/consulta')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Fila->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Fila))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+CRITICAL - 2025-06-22 16:15:10 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "fila/consulta.php"
+[Method: GET, Route: fila]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('fila/consulta.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('fila/consulta', [], true)
+ 3 APPPATH\Controllers\Fila.php(11): view('fila/consulta')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Fila->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Fila))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+CRITICAL - 2025-06-22 19:58:18 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "fila/consulta.php"
+[Method: GET, Route: fila]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('fila/consulta.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('fila/consulta', [], true)
+ 3 APPPATH\Controllers\Fila.php(11): view('fila/consulta')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Fila->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Fila))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+CRITICAL - 2025-06-22 19:59:09 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "fila/consulta.php"
+[Method: GET, Route: fila]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('fila/consulta.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('fila/consulta', [], true)
+ 3 APPPATH\Controllers\Fila.php(11): view('fila/consulta')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Fila->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Fila))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+CRITICAL - 2025-06-22 20:09:09 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\FichaModel::whereNotNull
+[Method: GET, Route: admin/fichas]
+in SYSTEMPATH\Model.php on line 930.
+ 1 APPPATH\Controllers\admin\FichaController.php(22): CodeIgniter\Model->__call('whereNotNull', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\FichaController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FichaController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+ERROR - 2025-06-22 20:11:55 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= '2025-06-22 20:11:55'
+WHERE `fichas`.`id` IN ('7')' at line 1 in C:\wamp64\www\ficha_um\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\wamp64\www\ficha_um\system\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `fichas`...', 0)
+#1 C:\wamp64\www\ficha_um\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `fichas`...')
+#2 C:\wamp64\www\ficha_um\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `fichas`...')
+#3 C:\wamp64\www\ficha_um\system\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `fichas`...', Array, false)
+#4 C:\wamp64\www\ficha_um\system\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\wamp64\www\ficha_um\system\BaseModel.php(1031): CodeIgniter\Model->doUpdate(Array, Array)
+#6 C:\wamp64\www\ficha_um\system\Model.php(863): CodeIgniter\BaseModel->update(Array, Array)
+#7 C:\wamp64\www\ficha_um\app\Controllers\admin\FichaController.php(97): CodeIgniter\Model->update('7', Array)
+#8 C:\wamp64\www\ficha_um\system\CodeIgniter.php(933): App\Controllers\Admin\FichaController->updateStatus('7', 'em_atendimento')
+#9 C:\wamp64\www\ficha_um\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FichaController))
+#10 C:\wamp64\www\ficha_um\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\wamp64\www\ficha_um\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\wamp64\www\ficha_um\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\wamp64\www\ficha_um\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\wamp64\www\ficha_um\system\rewrite.php(44): require_once('C:\\wamp64\\www\\f...')
+#15 {main}
+CRITICAL - 2025-06-22 20:11:55 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= '2025-06-22 20:11:55'
+WHERE `fichas`.`id` IN ('7')' at line 1
+[Method: GET, Route: admin/fichas/status/7/em_atendimento]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `fichas` SET `status` = :status:, `inicio_atendimento` = :inicio_atendimento:,  = ::
+WHERE `fichas`.`id` IN :fichas.id:', [...], false)
+ 2 SYSTEMPATH\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+ 3 SYSTEMPATH\BaseModel.php(1031): CodeIgniter\Model->doUpdate([...], [...])
+ 4 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [...])
+ 5 APPPATH\Controllers\admin\FichaController.php(97): CodeIgniter\Model->update('7', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\FichaController->updateStatus('7', 'em_atendimento')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FichaController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+CRITICAL - 2025-06-22 20:11:55 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= '2025-06-22 20:11:55'
+WHERE `fichas`.`id` IN ('7')' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `fichas` SET `status` = \'em_atendimento\', `inicio_atendimento` = \'2025-06-22 20:11:55\',  = \'2025-06-22 20:11:55\'
+WHERE `fichas`.`id` IN (\'7\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `fichas` SET `status` = \'em_atendimento\', `inicio_atendimento` = \'2025-06-22 20:11:55\',  = \'2025-06-22 20:11:55\'
+WHERE `fichas`.`id` IN (\'7\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `fichas` SET `status` = :status:, `inicio_atendimento` = :inicio_atendimento:,  = ::
+WHERE `fichas`.`id` IN :fichas.id:', [...], false)
+ 4 SYSTEMPATH\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+ 5 SYSTEMPATH\BaseModel.php(1031): CodeIgniter\Model->doUpdate([...], [...])
+ 6 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [...])
+ 7 APPPATH\Controllers\admin\FichaController.php(97): CodeIgniter\Model->update('7', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\FichaController->updateStatus('7', 'em_atendimento')
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FichaController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+CRITICAL - 2025-06-22 20:11:55 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= '2025-06-22 20:11:55'
+WHERE `fichas`.`id` IN ('7')' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `fichas` SET `status` = \'em_atendimento\', `inicio_atendimento` = \'2025-06-22 20:11:55\',  = \'2025-06-22 20:11:55\'
+WHERE `fichas`.`id` IN (\'7\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `fichas` SET `status` = \'em_atendimento\', `inicio_atendimento` = \'2025-06-22 20:11:55\',  = \'2025-06-22 20:11:55\'
+WHERE `fichas`.`id` IN (\'7\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `fichas` SET `status` = \'em_atendimento\', `inicio_atendimento` = \'2025-06-22 20:11:55\',  = \'2025-06-22 20:11:55\'
+WHERE `fichas`.`id` IN (\'7\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `fichas` SET `status` = :status:, `inicio_atendimento` = :inicio_atendimento:,  = ::
+WHERE `fichas`.`id` IN :fichas.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+ 6 SYSTEMPATH\BaseModel.php(1031): CodeIgniter\Model->doUpdate([...], [...])
+ 7 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [...])
+ 8 APPPATH\Controllers\admin\FichaController.php(97): CodeIgniter\Model->update('7', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\FichaController->updateStatus('7', 'em_atendimento')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FichaController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+DEBUG - 2025-06-22 20:20:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:26:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:26:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-22 20:26:35 --> mysqli_sql_exception: Duplicate entry '040.495.460-00' for key 'usuarios.cpf' in C:\wamp64\www\ficha_um\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\wamp64\www\ficha_um\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `us...', 0)
+#1 C:\wamp64\www\ficha_um\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
+#2 C:\wamp64\www\ficha_um\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
+#3 C:\wamp64\www\ficha_um\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', Array, false)
+#4 C:\wamp64\www\ficha_um\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\wamp64\www\ficha_um\system\BaseModel.php(843): CodeIgniter\Model->doInsert(Array)
+#6 C:\wamp64\www\ficha_um\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\wamp64\www\ficha_um\app\Controllers\admin\UsuarioController.php(24): CodeIgniter\Model->insert(Array)
+#8 C:\wamp64\www\ficha_um\system\CodeIgniter.php(933): App\Controllers\Admin\UsuarioController->store()
+#9 C:\wamp64\www\ficha_um\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UsuarioController))
+#10 C:\wamp64\www\ficha_um\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\wamp64\www\ficha_um\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\wamp64\www\ficha_um\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\wamp64\www\ficha_um\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\wamp64\www\ficha_um\system\rewrite.php(44): require_once('C:\\wamp64\\www\\f...')
+#15 {main}
+CRITICAL - 2025-06-22 20:26:35 --> CodeIgniter\Database\Exceptions\DatabaseException: Duplicate entry '040.495.460-00' for key 'usuarios.cpf'
+[Method: POST, Route: admin/usuarios/store]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `criado_em`) VALUES (:cpf:, :nome:, :cartao_sus:, :endereco:, :email:, :senha:, :criado_em:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(843): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Controllers\admin\UsuarioController.php(24): CodeIgniter\Model->insert([...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\UsuarioController->store()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UsuarioController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+CRITICAL - 2025-06-22 20:26:35 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Duplicate entry '040.495.460-00' for key 'usuarios.cpf'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `criado_em`) VALUES (\'040.495.460-00\', \'Henrique Machado Guimarães\', \'111\', \'rua rua\', \'henriquemachadoguimaraes@gmail.com\', \'$2y$10$4AH7QdwO.28Upxip23lf9uaphkwcxLXB4pgD6L49Bg0wVy2Xw5czO\', \'2025-06-22 20:26:35\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `criado_em`) VALUES (\'040.495.460-00\', \'Henrique Machado Guimarães\', \'111\', \'rua rua\', \'henriquemachadoguimaraes@gmail.com\', \'$2y$10$4AH7QdwO.28Upxip23lf9uaphkwcxLXB4pgD6L49Bg0wVy2Xw5czO\', \'2025-06-22 20:26:35\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `criado_em`) VALUES (:cpf:, :nome:, :cartao_sus:, :endereco:, :email:, :senha:, :criado_em:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(843): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Controllers\admin\UsuarioController.php(24): CodeIgniter\Model->insert([...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\UsuarioController->store()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UsuarioController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+CRITICAL - 2025-06-22 20:26:35 --> [Caused by] mysqli_sql_exception: Duplicate entry '040.495.460-00' for key 'usuarios.cpf'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `criado_em`) VALUES (\'040.495.460-00\', \'Henrique Machado Guimarães\', \'111\', \'rua rua\', \'henriquemachadoguimaraes@gmail.com\', \'$2y$10$4AH7QdwO.28Upxip23lf9uaphkwcxLXB4pgD6L49Bg0wVy2Xw5czO\', \'2025-06-22 20:26:35\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `criado_em`) VALUES (\'040.495.460-00\', \'Henrique Machado Guimarães\', \'111\', \'rua rua\', \'henriquemachadoguimaraes@gmail.com\', \'$2y$10$4AH7QdwO.28Upxip23lf9uaphkwcxLXB4pgD6L49Bg0wVy2Xw5czO\', \'2025-06-22 20:26:35\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `criado_em`) VALUES (\'040.495.460-00\', \'Henrique Machado Guimarães\', \'111\', \'rua rua\', \'henriquemachadoguimaraes@gmail.com\', \'$2y$10$4AH7QdwO.28Upxip23lf9uaphkwcxLXB4pgD6L49Bg0wVy2Xw5czO\', \'2025-06-22 20:26:35\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `criado_em`) VALUES (:cpf:, :nome:, :cartao_sus:, :endereco:, :email:, :senha:, :criado_em:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(843): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\admin\UsuarioController.php(24): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\UsuarioController->store()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UsuarioController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+DEBUG - 2025-06-22 20:26:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:26:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:27:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:27:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:27:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:27:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:27:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:28:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:28:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:28:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:28:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:28:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:35:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-22 20:35:47 --> ErrorException: Undefined array key "is_admin"
+[Method: GET, Route: admin/fichas]
+in APPPATH\Controllers\admin\FichaController.php on line 12.
+ 1 APPPATH\Controllers\admin\FichaController.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "is_admin"', 'C:\\wamp64\\www\\ficha_um\\app\\Controllers\\admin\\FichaController.php', 12)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\FichaController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FichaController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+DEBUG - 2025-06-22 20:35:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:35:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:35:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:35:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-22 20:35:56 --> ErrorException: Undefined array key "is_admin"
+[Method: GET, Route: admin/fichas]
+in APPPATH\Controllers\admin\FichaController.php on line 12.
+ 1 APPPATH\Controllers\admin\FichaController.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "is_admin"', 'C:\\wamp64\\www\\ficha_um\\app\\Controllers\\admin\\FichaController.php', 12)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\FichaController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FichaController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+DEBUG - 2025-06-22 20:35:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-22 20:35:58 --> ErrorException: Undefined array key "is_admin"
+[Method: GET, Route: admin/fichas]
+in APPPATH\Controllers\admin\FichaController.php on line 12.
+ 1 APPPATH\Controllers\admin\FichaController.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "is_admin"', 'C:\\wamp64\\www\\ficha_um\\app\\Controllers\\admin\\FichaController.php', 12)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\FichaController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FichaController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+DEBUG - 2025-06-22 20:37:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-22 20:37:25 --> ErrorException: Undefined array key "is_admin"
+[Method: GET, Route: admin/fichas]
+in APPPATH\Controllers\admin\FichaController.php on line 12.
+ 1 APPPATH\Controllers\admin\FichaController.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "is_admin"', 'C:\\wamp64\\www\\ficha_um\\app\\Controllers\\admin\\FichaController.php', 12)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\FichaController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FichaController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha_um\\public\\index.php')
+DEBUG - 2025-06-22 20:42:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:42:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:42:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:43:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:43:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:44:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:44:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:44:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:44:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:44:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:44:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:48:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:48:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-22 20:48:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

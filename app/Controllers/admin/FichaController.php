@@ -7,8 +7,36 @@ class FichaController extends BaseController
 {
     public function index()
     {
+
+        $usuario = session()->get('usuarioLogado');
+
+        if (!is_array($usuario) || !isset($usuario['is_admin']) || !$usuario['is_admin']) {
+            return redirect()->to('/fila'); // redireciona usuário comum para a tela pública
+        }
+
         $model = new FichaModel();
-        $data['fichas'] = $model->orderBy('criado_em', 'ASC')->findAll();
+
+        $statusFiltro = $this->request->getGet('status');
+        $builder = $model->orderBy('criado_em', 'ASC');
+
+        if ($statusFiltro && in_array($statusFiltro, ['aguardando', 'em_atendimento', 'atendido'])) {
+            $builder->where('status', $statusFiltro);
+        }
+
+        $fichas = $builder->findAll();
+
+        $posicaoFila = 1;
+        foreach ($fichas as &$ficha) {
+            if ($ficha['status'] === 'aguardando') {
+                $ficha['posicao'] = $posicaoFila++;
+            } else {
+                $ficha['posicao'] = '—';
+            }
+        }
+
+        $data['fichas'] = $fichas;
+        $data['statusAtual'] = $statusFiltro ?? 'todos';
+
         return view('admin/fichas/index', $data);
     }
     public function create()
@@ -31,11 +59,20 @@ class FichaController extends BaseController
     public function updateStatus($id = null, $novoStatus = null)
     {
         $model = new FichaModel();
-
         $ficha = $model->find($id);
 
         if ($ficha && in_array($novoStatus, ['aguardando', 'em_atendimento', 'atendido'])) {
-            $model->update($id, ['status' => $novoStatus]);
+            $dados = ['status' => $novoStatus];
+
+            if ($novoStatus === 'em_atendimento') {
+                $dados['inicio_atendimento'] = date('Y-m-d H:i:s');
+            }
+
+            if ($novoStatus === 'atendido') {
+                $dados['fim_atendimento'] = date('Y-m-d H:i:s');
+            }
+
+            $model->update($id, $dados);
         }
 
         return redirect()->to(site_url('admin/fichas'));
@@ -50,3 +87,4 @@ class FichaController extends BaseController
 
 
 }
+
