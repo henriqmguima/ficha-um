@@ -1,0 +1,136 @@
+/* Corpo da página de login */
+.login-body {
+    background: var(--cinza-claro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container principal */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+}
+
+/* Box de login */
+.login-box {
+    background: var(--branco);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(20, 36, 78, 0.2);
+    padding: 30px;
+    text-align: center;
+}
+
+/* Títulos */
+.login-box h2 {
+    color: var(--azul-escuro);
+    margin-bottom: 10px;
+}
+
+.login-box .logo {
+    font-weight: bold;
+    color: var(--azul-medio);
+}
+
+.login-box .um {
+    color: var(--azul-escuro);
+}
+
+/* Subtítulo */
+.subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Formulário */
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.login-box label {
+    font-weight: 600;
+    margin-top: 15px;
+    color: var(--azul-escuro);
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.login-box {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Botão */
+.login-box button {
+    margin-top: 20px;
+    padding: 12px;
+    background: var(--azul-medio);
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-box button:hover {
+    background: var(--azul-escuro);
+}
+
+/* Mensagem de erro */
+.erro-msg {
+    background-color: #fdd;
+    border-left: 4px solid var(--erro);
+    padding: 10px;
+    color: var(--erro);
+    margin-bottom: 15px;
+    border-radius: 4px;
+    text-align: left;
+}
+.senha-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+}
+
+.senha-wrapper input {
+    flex: 1;
+    padding-right: 30px;
+}
+
+.senha-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.senha-wrapper input {
+    width: 100%;
+    padding-right: 36px; /* espaço pro ícone */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Ícone perfeitamente centralizado */
+.toggle-senha {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--azul-escuro);
+    pointer-events: all;
+}

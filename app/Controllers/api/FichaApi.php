@@ -8,7 +8,6 @@ class FichaApi extends ResourceController
 {
     protected $format = 'json';
 
-    // POST /api/fichas
     public function create()
     {
         $data = $this->request->getJSON(true);
@@ -28,17 +27,20 @@ class FichaApi extends ResourceController
 
         return $this->respondCreated(['id' => $fichaId]);
     }
-
-    // GET /api/fichas/minha-ficha?id=3
     public function minhaFicha()
     {
-        $id = $this->request->getGet('id');
-        if (!$id) {
-            return $this->failValidationErrors('ID da ficha é obrigatório.');
-        }
+        $cpf = $this->request->getGet('cpf');
+        $id  = $this->request->getGet('id');
 
-        $model = new FichaModel();
-        $minhaFicha = $model->find($id);
+        $model = new \App\Models\FichaModel();
+
+        if ($cpf) {
+            $minhaFicha = $model->where('cpf', $cpf)->orderBy('criado_em', 'DESC')->first();
+        } elseif ($id) {
+            $minhaFicha = $model->find($id);
+        } else {
+            return $this->failValidationErrors('CPF ou ID da ficha é obrigatório.');
+        }
 
         if (!$minhaFicha) {
             return $this->failNotFound('Ficha não encontrada.');
@@ -47,14 +49,13 @@ class FichaApi extends ResourceController
         if ($minhaFicha['status'] !== 'aguardando') {
             return $this->respond([
                 'status' => $minhaFicha['status'],
+                'nome_paciente' => $minhaFicha['nome_paciente'],
                 'mensagem' => 'Sua ficha já foi atendida ou está em atendimento.'
             ]);
         }
 
-        // Buscar todas as fichas "aguardando", em ordem de chegada
         $todas = $model->where('status', 'aguardando')->orderBy('criado_em', 'ASC')->findAll();
 
-        // Descobrir a posição da ficha
         $posicao = 1;
         foreach ($todas as $ficha) {
             if ($ficha['id'] == $minhaFicha['id']) {
@@ -65,6 +66,7 @@ class FichaApi extends ResourceController
 
         return $this->respond([
             'id' => $minhaFicha['id'],
+            'cpf' => $minhaFicha['cpf'],
             'nome_paciente' => $minhaFicha['nome_paciente'],
             'status' => $minhaFicha['status'],
             'posicao_na_fila' => $posicao

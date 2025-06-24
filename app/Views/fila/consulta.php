@@ -2,30 +2,54 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Consultar Ficha</title>
+    <title>Sua Ficha</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cpf = "<?= session('usuarioLogado')['cpf'] ?>";
+
+            async function carregarFicha() {
+                try {
+                    const response = await fetch(`/api/fichas/minha-ficha?cpf=${cpf}`);
+                    const data = await response.json();
+
+                    if (data.error) {
+                        document.getElementById('conteudo').innerHTML = `<p>${data.messages.error}</p>`;
+                        return;
+                    }
+
+                    let html = `
+                        <h2>Ficha de ${data.nome_paciente}</h2>
+                        <p><strong>Status:</strong> ${data.status}</p>
+                    `;
+
+                    if (data.status === 'aguardando') {
+                        html += `<p><strong>Sua posição na fila:</strong> ${data.posicao_na_fila}</p>`;
+                    } else if (data.status === 'em_atendimento') {
+                        html += `<p>⚕️ Você está em atendimento.</p>`;
+                    } else {
+                        html += `<p>✅ Seu atendimento foi concluído.</p>`;
+                    }
+
+                    document.getElementById('conteudo').innerHTML = html;
+
+                } catch (e) {
+                    document.getElementById('conteudo').innerHTML = `<p>Erro ao buscar os dados.</p>`;
+                }
+            }
+
+            // Atualiza a cada 10 segundos
+            carregarFicha();
+            setInterval(carregarFicha, 10000);
+        });
+    </script>
 </head>
 <body>
-    <h1>Consultar Ficha</h1>
+    <h1>Olá, <?= esc(session('usuarioLogado')['nome']) ?>!</h1>
 
-    <form method="post" action="<?= site_url('fila/resultado') ?>">
-        <label for="id">Digite o ID da sua ficha:</label>
-        <input type="number" name="id" id="id" required>
-        <button type="submit">Consultar</button>
-    </form>
+    <div id="conteudo">
+        <p>Carregando informações da sua ficha...</p>
+    </div>
 
-    <?php if (!empty($erro)) : ?>
-        <p style="color: red;"><?= esc($erro) ?></p>
-    <?php endif; ?>
-
-    <?php if (!empty($ficha)) : ?>
-        <h2>Ficha de <?= esc($ficha['nome_paciente']) ?></h2>
-        <p>Status: <strong><?= esc($ficha['status']) ?></strong></p>
-
-        <?php if ($posicao): ?>
-            <p>Sua posição atual na fila: <strong><?= $posicao ?></strong></p>
-        <?php elseif (!empty($mensagem)): ?>
-            <p><?= esc($mensagem) ?></p>
-        <?php endif; ?>
-    <?php endif; ?>
+    <p><a href="<?= site_url('logout') ?>">Sair</a></p>
 </body>
 </html>

@@ -7,7 +7,6 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->get('fila', 'Fila::index');
-$routes->post('fila/resultado', 'Fila::resultado');
 $routes->get('login', 'Login::index');
 $routes->post('login/autenticar', 'Login::autenticar');
 $routes->get('logout', 'Login::sair');

@@ -13,6 +13,7 @@ class FichaModel extends Model
 
     protected $allowedFields = [
         'nome_paciente',
+        'cpf',
         'tipo_atendimento',
         'status',
         'criado_em',

@@ -1,0 +1,26 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Cores */
+:root {
+    --azul-escuro: #14244E;
+    --azul-medio: #2A418D;
+    --branco: #ffffff;
+    --cinza-claro: #f0f2f5;
+    --cinza-medio: #ccc;
+    --texto: #222;
+    --sucesso: #4CAF50;
+    --erro: #D32F2F;
+}
+
+.footer {
+    text-align: right;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #666;
+}
