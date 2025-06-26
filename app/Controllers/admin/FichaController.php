@@ -11,7 +11,7 @@ public function index()
     $usuario = session()->get('usuarioLogado');
 
     if (!is_array($usuario) || !isset($usuario['is_admin']) || !$usuario['is_admin']) {
-        return redirect()->to('/fila'); // redireciona usuário comum para a tela pública
+        return redirect()->to('/users'); // redireciona usuário comum para a tela pública
     }
 
     $model = new FichaModel();
@@ -32,9 +32,23 @@ public function index()
         } else {
             $ficha['posicao'] = '—';
         }
+
+        $criado = new \DateTime($ficha['criado_em'], new \DateTimeZone('UTC'));
+        $agora = new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
+        $intervalo = $criado->diff($agora);
+
+        if ($ficha['status'] === 'aguardando') {
+            $ficha['tempo_espera'] = $intervalo->format('%H:%I:%S');
+        } else {
+            $ficha['tempo_espera'] = '—';
+        }
+
+        $ficha['criado_em_timestamp'] = strtotime($ficha['criado_em']);
     }
 
-    // 🔽 Adiciona usuários para o modal de criação
+
+
+
     $usuarioModel = new \App\Models\UsuarioModel();
     $usuarios = $usuarioModel->where('is_admin', 0)->findAll();
 
@@ -65,15 +79,17 @@ public function index()
         $model = new FichaModel();
 
         $model->save([
-            'nome_paciente'    => $paciente['nome'],
-            'cpf'              => $paciente['cpf'],
-            'tipo_atendimento' => $this->request->getPost('tipo_atendimento'),
-            'status'           => 'aguardando',
-            'criado_em'        => date('Y-m-d H:i:s'),
+            'usuario_id'        => $paciente['id'],
+            'nome_paciente'     => $paciente['nome'],
+            'cpf'               => $paciente['cpf'],
+            'tipo_atendimento'  => $this->request->getPost('tipo_atendimento'),
+            'status'            => 'aguardando',
+            'criado_em'         => date('Y-m-d H:i:s'),
         ]);
 
         return redirect()->to(site_url('admin/fichas'));
     }
+
 
 
     public function updateStatus($id = null, $novoStatus = null)
@@ -104,7 +120,5 @@ public function index()
 
         return redirect()->to(site_url('admin/fichas'));
     }
-
-
 }
 

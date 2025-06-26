@@ -1,4 +1,8 @@
 /* Reset básico */
+body, html {
+    height: 100%;
+    margin: 0;
+}
 * {
     margin: 0;
     padding: 0;
@@ -19,8 +23,16 @@
 }
 
 .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--azul-medio); 
     text-align: right;
-    margin-top: 40px;
+    padding: 10px 20px;
     font-size: 0.9rem;
-    color: #666;
+    color: var(--branco);
+    border-top: 1px solid var(--cinza-medio);
+    z-index: 100;
 }
+

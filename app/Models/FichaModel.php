@@ -12,8 +12,9 @@ class FichaModel extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'nome_paciente',
+        'usuario_id',
         'cpf',
+        'nome_paciente',
         'tipo_atendimento',
         'status',
         'criado_em',

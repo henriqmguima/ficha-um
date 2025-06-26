@@ -134,3 +134,23 @@
     color: var(--azul-escuro);
     pointer-events: all;
 }
+.registro-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.registro-link a.btn-secundario {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 16px;
+    background-color: #e6e6e6;
+    color: #2A418D;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.registro-link a.btn-secundario:hover {
+    background-color: #ccc;
+}

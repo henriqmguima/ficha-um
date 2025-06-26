@@ -1,4 +1,4 @@
-/* FUNDO ESCURO E CENTRALIZAÇÃO */
+/* === FUNDO ESCURO E CENTRALIZAÇÃO === */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -16,26 +16,7 @@
     display: flex;
 }
 
-/* CONTEÚDO DO MODAL */
-.modal {
-    background-color: #ffffff;
-    padding: 30px 25px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    position: relative;
-    font-family: "Segoe UI", sans-serif;
-    animation: fadeIn 0.3s ease;
-}
-
-
-.modal.show {
-    display: flex;
-}
-
-/* === MODAL CAIXA === */
-.modal-content,
+/* === CONTEÚDO DO MODAL === */
 .modal {
     background-color: #ffffff;
     padding: 30px 25px;
@@ -83,10 +64,27 @@
     outline: none;
 }
 
-/* === BOTÃO === */
+/* === CHECKBOX LABEL === */
+.checkbox-label {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: #2A418D;
+    font-size: 0.95rem;
+    width: 50%;
+}
+input[type="checkbox"] {
+    margin: 0! important;
+    padding: 0! important;
+    width: 10px !important;
+}
+
+/* === BOTÃO SUBMIT === */
 .modal button[type="submit"] {
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 12px 20px;
     background-color: #2A418D;
     color: white;
     border: none;
@@ -100,7 +98,7 @@
     background-color: #14244E;
 }
 
-/* === FECHAR === */
+/* === BOTÃO FECHAR === */
 .close,
 .modal-close {
     position: absolute;
@@ -119,17 +117,37 @@
     color: #000;
 }
 
-/* === CHECKBOX LABEL === */
-.checkbox-label {
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
 /* === MENSAGEM DE SUCESSO === */
 .success-message {
     margin-top: 15px;
     color: green;
     font-weight: bold;
+    font-size: 0.95rem;
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 500px) {
+    .modal {
+        padding: 20px 15px;
+        width: 95%;
+    }
+
+    .modal h2 {
+        font-size: 1.2rem;
+    }
+
+    .modal form label,
+    .checkbox-label {
+        font-size: 0.9rem;
+    }
+
+    .modal form input,
+    .modal form select {
+        font-size: 0.9rem;
+    }
+
+    .modal button[type="submit"] {
+        width: 100%;
+        font-size: 0.95rem;
+    }
 }

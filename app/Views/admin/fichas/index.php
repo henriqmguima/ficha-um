@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/admin/index.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/admin/modal.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script defer src="<?= base_url('assets/js/modal_create_usuario.js') ?>"></script>
-    <script defer src="<?= base_url('assets/js/modal_create_ficha.js') ?>"></script>
+    <link rel="shortcut icon" href="<?php echo base_url('assets/images/logo/favicon.ico'); ?>" type="image/x-icon">
+    <script defer src="<?= base_url('assets/js/admin/modal_create_usuario.js') ?>"></script>
+    <script defer src="<?= base_url('assets/js/admin/modal_create_ficha.js') ?>"></script>
+    <script defer src="<?= base_url('assets/js/admin/fila_admin.js') ?>"></script>
+
 </head>
 <body class="admin-body">
+    <button class="menu-toggle" onclick="toggleSidebar()">
+        <i class="fa fa-bars"></i>
+    </button>
 
     <div class="layout">
         <!-- MENU LATERAL -->
@@ -52,6 +58,7 @@
                                 <th>Status</th>
                                 <th>Posição</th>
                                 <th>Data</th>
+                                <th>Tempo de Espera</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -64,6 +71,15 @@
                                     <td><?= esc($ficha['status']) ?></td>
                                     <td><?= esc($ficha['posicao']) ?></td>
                                     <td><?= esc(date('d/m/Y H:i', strtotime($ficha['criado_em']))) ?></td>
+                                    <td>
+                                        <?php if ($ficha['status'] === 'aguardando'): ?>
+                                            <span class="tempo-espera" data-inicio="<?= $ficha['criado_em_timestamp'] ?>" id="espera-<?= $ficha['id'] ?>">
+                                                <?= esc($ficha['tempo_espera']) ?>
+                                            </span>
+                                        <?php else: ?>
+                                            —
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <?php if ($ficha['status'] == 'aguardando'): ?>
                                             <a href="<?= site_url('admin/fichas/status/' . $ficha['id'] . '/em_atendimento') ?>" title="Atender">

@@ -1,60 +1,106 @@
-# CodeIgniter 4 Framework
 
-## What is CodeIgniter?
+# 📋 Ficha Um
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+**Ficha Um** é um sistema de gerenciamento de filas para atendimentos em unidades básicas de saúde, desenvolvido com CodeIgniter 4. Ele permite o registro de unidades, criação de fichas de atendimento, controle de status e visualização da posição na fila por parte dos usuários.
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+A inciativa do projeto veio através de suprir uma demanda do pronto atendimento das unidades de saúde pública que utilizam o SUS de Charqueadas/RS
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+---
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## 🚀 Funcionalidades Principais
 
-## Important Change with index.php
+- Registro de unidades de saúde
+- Cadastro de Diretor Geral, administradores e usuários comuns (pacientes)
+- Criação e controle de fichas de atendimento
+- Atualização do status das fichas (aguardando, em atendimento, atendido)
+- Visualização da posição na fila em tempo real
+- API RESTful para integração externa
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+---
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## 🛠️ Tecnologias Utilizadas
 
-**Please** read the user guide for a better explanation of how CI4 works!
+- PHP 8+
+- CodeIgniter 4
+- MySQL
+- HTML5 + CSS3 (com design responsivo)
+- JavaScript (Fetch API)
+- Bootstrap
 
-## Repository Management
+---
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+## ⚙️ Requisitos
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+- PHP 8.1+
+- Composer
+- MySQL
 
-## Contributing
+---
 
-We welcome contributions from the community.
+## 🧪 Instalação e Execução
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+1. **Clone o repositório**
 
-## Server Requirements
+```bash
+git clone https://github.com/henriqmguima/gerenciamento-de-fila-para-sa-de
+cd gerenciamento-de-fila-para-sa-de
+```
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+2. **Instale as dependências**
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+```bash
+composer install
+```
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+3. **Configure o ambiente**
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+Crie um arquivo `.env` com base no `.env.example` abaixo e configure o acesso ao banco de dados:
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+```
+database.default.hostname = localhost
+database.default.database = sistema_filas
+database.default.username = root
+database.default.password = root
+database.default.DBDriver = MySQLi
+```
+
+4. **Crie o banco de dados e rode as Demos**
+
+```bash
+php spark migrate
+php spark db:seed DemoSeeder
+```
+
+5. **Execute o servidor**
+
+```bash
+php spark serve
+```
+
+Acesse: [http://localhost:8080](http://localhost:8080)
+
+---
+
+## 👥 Acesso ao sistema
+
+- **Administrador 1:** `00011122233` — senha: `admin123`
+- **Administrador 2:** `00011122244` — senha: `admin123`
+- **Usuários comuns:** `11122233301`, `11122233302` ... até `11122233305`
+
+> A senha de todos os usuários comuns é `usuario123`
+
+---
+
+## 📁 Estrutura do Projeto
+
+- `app/Controllers`: Lógica dos controladores (Ficha, Usuário, API e frontend)
+- `app/Models`: Models com regras de acesso ao banco
+- `app/Views`: Telas HTML renderizadas com dados dinâmicos
+- `app/Database/Seeds`: Seeders para popular o sistema
+- `app/Database/Migrations`: Migrations para estrutura do banco de dados
+
+---
+
+## 🧑‍💻 Autoria
+
+Desenvolvido por Henrique Guimarães como parte de trabalho de conclusão de curso — 2025.

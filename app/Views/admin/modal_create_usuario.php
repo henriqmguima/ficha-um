@@ -1,10 +1,10 @@
 <div class="modal-overlay" id="modalUsuario">
     <div class="modal">
-
         <span class="close" onclick="fecharModal_Usuario()">&times;</span>
         <h2>Cadastrar Novo Usuário</h2>
 
-        <form method="post" action="<?= site_url('admin/usuarios/store') ?>">
+        <!-- FORMULÁRIO -->
+        <form id="formUsuario" method="post">
             <label>Nome:</label>
             <input type="text" name="nome" required>
 
@@ -21,16 +21,16 @@
             <input type="email" name="email">
 
             <label class="checkbox-label">
-                <input type="checkbox" name="is_admin" value="1"> É administrador?
+                É administrador? <input type="checkbox" name="is_admin" value="1"> 
             </label>
 
             <button type="submit" class="btn">Cadastrar</button>
         </form>
 
-        <?php if (session()->getFlashdata('senhaGerada')) : ?>
-            <p class="success-message">
-                ✅ Senha gerada: <strong><?= session()->getFlashdata('senhaGerada') ?></strong>
-            </p>
-        <?php endif; ?>
+        <!-- RESPOSTA COM A SENHA -->
+        <div id="respostaSenha" class="success-message" style="display:none;">
+            ✅ Usuário cadastrado!<br>
+            Senha gerada: <strong id="senhaGerada"></strong>
+        </div>
     </div>
 </div>

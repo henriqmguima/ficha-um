@@ -13,12 +13,20 @@ class FichaApi extends ResourceController
         $data = $this->request->getJSON(true);
 
         if (!isset($data['nome_paciente'])) {
-            return $this->failValidationErrors('O campo nome_paciente é obrigatório.');
+            return $this->failValidationErrors('Campo nome_paciente é obrigatório.');
+        }
+
+        $usuario = session()->get('usuarioLogado');
+
+        if (!$usuario) {
+            return $this->failUnauthorized('Usuário não autenticado.');
         }
 
         $model = new FichaModel();
 
         $fichaId = $model->insert([
+            'usuario_id'       => $usuario['id'],
+            'cpf'              => $data['cpf'] ?? null,
             'nome_paciente'    => $data['nome_paciente'],
             'tipo_atendimento' => $data['tipo_atendimento'] ?? null,
             'status'           => 'aguardando',
@@ -29,17 +37,26 @@ class FichaApi extends ResourceController
     }
     public function minhaFicha()
     {
-        $cpf = $this->request->getGet('cpf');
-        $id  = $this->request->getGet('id');
+        $usuario = session()->get('usuarioLogado');
+        $cpf     = $this->request->getGet('cpf');
+        $id      = $this->request->getGet('id');
 
-        $model = new \App\Models\FichaModel();
+        $model = new FichaModel();
 
-        if ($cpf) {
-            $minhaFicha = $model->where('cpf', $cpf)->orderBy('criado_em', 'DESC')->first();
+        if ($usuario) {
+            $minhaFicha = $model
+                ->where('usuario_id', $usuario['id'])
+                ->orderBy('criado_em', 'DESC')
+                ->first();
+        } elseif ($cpf) {
+            $minhaFicha = $model
+                ->where('cpf', $cpf)
+                ->orderBy('criado_em', 'DESC')
+                ->first();
         } elseif ($id) {
             $minhaFicha = $model->find($id);
         } else {
-            return $this->failValidationErrors('CPF ou ID da ficha é obrigatório.');
+            return $this->failValidationErrors('ID do usuário, CPF ou ID da ficha é obrigatório.');
         }
 
         if (!$minhaFicha) {
@@ -54,7 +71,10 @@ class FichaApi extends ResourceController
             ]);
         }
 
-        $todas = $model->where('status', 'aguardando')->orderBy('criado_em', 'ASC')->findAll();
+        $todas = $model
+            ->where('status', 'aguardando')
+            ->orderBy('criado_em', 'ASC')
+            ->findAll();
 
         $posicao = 1;
         foreach ($todas as $ficha) {
@@ -72,4 +92,5 @@ class FichaApi extends ResourceController
             'posicao_na_fila' => $posicao
         ]);
     }
+
 }

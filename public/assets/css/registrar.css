@@ -1,0 +1,126 @@
+/* registrar.css */
+
+/* Aplica estilo semelhante ao login */
+body.login-body {
+    background: var(--cinza-claro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 10px;
+    min-height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 600px;
+    padding: 30px;
+}
+
+.login-box {
+    background: var(--branco);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(20, 36, 78, 0.15);
+    padding: 30px;
+}
+
+.login-box h2 {
+    text-align: center;
+    color: var(--azul-escuro);
+    margin-bottom: 10px;
+}
+
+.login-box .logo {
+    font-weight: bold;
+    color: var(--azul-medio);
+}
+
+.login-box .um {
+    color: var(--azul-escuro);
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* Títulos de seção */
+.login-box h3 {
+    font-size: 18px;
+    color: var(--azul-escuro);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    margin-top: 15px;
+    color: var(--azul-escuro);
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+/* Botão principal */
+button[type="submit"] {
+    margin-top: 25px;
+    padding: 12px;
+    background: var(--azul-medio);
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: var(--azul-escuro);
+}
+
+/* Mensagem de erro */
+.erro-msg {
+    background-color: #fdd;
+    border-left: 4px solid var(--erro);
+    padding: 10px;
+    color: var(--erro);
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+/* Link de voltar */
+.login-box a {
+    color: var(--azul-medio);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.login-box a:hover {
+    text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    .login-box {
+        padding: 20px;
+    }
+
+    .login-box h2 {
+        font-size: 20px;
+    }
+    .login-container{
+        margin-top: 700px;
+    }
+}
