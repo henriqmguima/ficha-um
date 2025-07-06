@@ -53,6 +53,21 @@ a:hover {
     color: var(--azul-escuro);
 }
 
+#btnCriarFicha{
+    margin-top: 10px;
+    padding: 12px;
+    background: var(--azul-medio);
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+#btnCriarFicha:hover {
+    background: var(--azul-escuro);
+}
+
 /* === RESPONSIVIDADE === */
 @media (max-width: 500px) {
     body {

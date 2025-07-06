@@ -29,7 +29,8 @@
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
                                 nome_paciente: nome,
-                                cpf: cpf
+                                cpf: cpf,
+                                tipo_atendimento: "Clínico Geral"
                             })
                         });
 

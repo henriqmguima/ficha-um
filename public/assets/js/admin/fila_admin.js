@@ -28,10 +28,24 @@ async function atualizarFilaAdmin() {
             tbody.innerHTML = '<tr><td colspan="8">Nenhuma ficha cadastrada.</td></tr>';
             return;
         }
-
+            const thead = document.createElement('thead');
+            thead.innerHTML = `
+                <tr>
+                    <th>ID</th>
+                    <th>Paciente</th>
+                    <th>Serviço</th>
+                    <th>Status</th>
+                    <th>Posição</th>
+                    <th>Data</th>
+                    <th>Tempo de Espera</th>
+                    <th>Ações</th>
+                </tr>
+            `;
         fichas.forEach(ficha => {
+
             const tr = document.createElement('tr');
 
+            tbody.appendChild(thead);
             const tempoEspera = ficha.status === 'aguardando'
                 ? `<span class="tempo-espera">${ficha.tempo_espera}</span>`
                 : '—';

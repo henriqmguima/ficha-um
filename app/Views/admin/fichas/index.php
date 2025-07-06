@@ -50,19 +50,7 @@
                 </select>
             </form>
             <div class="tabela-wrapper">
-                <table class="tabela-fichas">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Tipo</th>
-                            <th>Status</th>
-                            <th>Posição</th>
-                            <th>Data</th>
-                            <th>Tempo de Espera</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
+                <table id="tabela-fichas">
                     <tbody id="tabela-fichas">
                         <tr><td colspan="8">Carregando fichas...</td></tr>
                     </tbody>
