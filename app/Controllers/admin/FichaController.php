@@ -25,25 +25,21 @@ public function index()
 
     $fichas = $builder->findAll();
 
-    $posicaoFila = 1;
+    $posicao = 1;
     foreach ($fichas as &$ficha) {
         if ($ficha['status'] === 'aguardando') {
-            $ficha['posicao'] = $posicaoFila++;
-        } else {
-            $ficha['posicao'] = '—';
-        }
+            $ficha['posicao'] = $posicao++;
 
-        $criado = new \DateTime($ficha['criado_em'], new \DateTimeZone('UTC'));
-        $agora = new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
-        $intervalo = $criado->diff($agora);
-
-        if ($ficha['status'] === 'aguardando') {
+            $criado = new \DateTime($ficha['criado_em'], new \DateTimeZone('America/Sao_Paulo'));
+            $agora = new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
+            $intervalo = $criado->diff($agora);
             $ficha['tempo_espera'] = $intervalo->format('%H:%I:%S');
         } else {
+            $ficha['posicao'] = '—';
             $ficha['tempo_espera'] = '—';
         }
 
-        $ficha['criado_em_timestamp'] = strtotime($ficha['criado_em']);
+        $ficha['data_formatada'] = date('d/m/Y H:i', strtotime($ficha['criado_em']));
     }
 
 

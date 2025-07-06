@@ -11,6 +11,9 @@
     <link rel="shortcut icon" href="<?php echo base_url('assets/images/logo/favicon.ico'); ?>" type="image/x-icon">
     <script defer src="<?= base_url('assets/js/admin/modal_create_usuario.js') ?>"></script>
     <script defer src="<?= base_url('assets/js/admin/modal_create_ficha.js') ?>"></script>
+    <script>
+        const API_LISTAR_FICHAS = "<?= site_url('api/fichas/listar') ?>";
+    </script>
     <script defer src="<?= base_url('assets/js/admin/fila_admin.js') ?>"></script>
 
 </head>
@@ -46,65 +49,25 @@
                     <option value="atendido" <?= $statusAtual == 'atendido' ? 'selected' : '' ?>>Atendido</option>
                 </select>
             </form>
-
-            <?php if (!empty($fichas)) : ?>
-                <div class="tabela-wrapper">
-                    <table class="tabela-fichas">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Tipo</th>
-                                <th>Status</th>
-                                <th>Posição</th>
-                                <th>Data</th>
-                                <th>Tempo de Espera</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($fichas as $ficha) : ?>
-                                <tr>
-                                    <td><?= esc($ficha['id']) ?></td>
-                                    <td><?= esc($ficha['nome_paciente']) ?></td>
-                                    <td><?= esc($ficha['tipo_atendimento']) ?></td>
-                                    <td><?= esc($ficha['status']) ?></td>
-                                    <td><?= esc($ficha['posicao']) ?></td>
-                                    <td><?= esc(date('d/m/Y H:i', strtotime($ficha['criado_em']))) ?></td>
-                                    <td>
-                                        <?php if ($ficha['status'] === 'aguardando'): ?>
-                                            <span class="tempo-espera" data-inicio="<?= $ficha['criado_em_timestamp'] ?>" id="espera-<?= $ficha['id'] ?>">
-                                                <?= esc($ficha['tempo_espera']) ?>
-                                            </span>
-                                        <?php else: ?>
-                                            —
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <?php if ($ficha['status'] == 'aguardando'): ?>
-                                            <a href="<?= site_url('admin/fichas/status/' . $ficha['id'] . '/em_atendimento') ?>" title="Atender">
-                                                <i class="fa fa-stethoscope"></i>
-                                            </a>
-                                        <?php elseif ($ficha['status'] == 'em_atendimento'): ?>
-                                            <a href="<?= site_url('admin/fichas/status/' . $ficha['id'] . '/atendido') ?>" title="Finalizar">
-                                                <i class="fa fa-check"></i>
-                                            </a>
-                                        <?php else: ?>
-                                            <span title="Atendido">✔</span>
-                                        <?php endif; ?>
-                                        <a href="<?= site_url('admin/fichas/delete/' . $ficha['id']) ?>" onclick="return confirm('Tem certeza que deseja excluir?')" title="Excluir">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            <?php else : ?>
-                <p>Nenhuma ficha cadastrada.</p>
-            <?php endif; ?>
-
+            <div class="tabela-wrapper">
+                <table class="tabela-fichas">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Status</th>
+                            <th>Posição</th>
+                            <th>Data</th>
+                            <th>Tempo de Espera</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-fichas">
+                        <tr><td colspan="8">Carregando fichas...</td></tr>
+                    </tbody>
+                </table>
+            </div>
             <footer class="footer">
                 Logado como <strong><?= esc(session('usuarioLogado')['nome']) ?></strong>
             </footer>

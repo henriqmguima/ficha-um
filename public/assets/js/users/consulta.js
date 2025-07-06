@@ -35,3 +35,9 @@ document.addEventListener('DOMContentLoaded', function () {
     carregarFicha();
     setInterval(carregarFicha, 5000);
 });
+
+body: JSON.stringify({
+    nome_paciente: nome,
+    cpf: cpf,
+    tipo_atendimento: "Clínico Geral"
+})

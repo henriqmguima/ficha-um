@@ -28,6 +28,7 @@ $routes->get('painel', 'Admin\FichaController::index');
 $routes->group('api', function ($routes) {
     $routes->post('fichas', 'Api\FichaApi::create');
     $routes->get('fichas/minha-ficha', 'Api\FichaApi::minhaFicha');
+    $routes->get('fichas/listar', 'Api\FichaApi::listar');
 });
 
 // Área protegida para administradores de postos

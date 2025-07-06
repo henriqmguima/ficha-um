@@ -24,6 +24,16 @@ class FichaApi extends ResourceController
 
         $model = new FichaModel();
 
+        // Verificar se o usuário já possui uma ficha "aguardando" ou "em_atendimento"
+        $fichaExistente = $model
+            ->where('usuario_id', $usuario['id'])
+            ->whereIn('status', ['aguardando', 'em_atendimento'])
+            ->first();
+
+        if ($fichaExistente) {
+            return $this->failResourceExists('Você já possui uma ficha ativa.');
+        }
+
         $fichaId = $model->insert([
             'usuario_id'       => $usuario['id'],
             'cpf'              => $data['cpf'] ?? null,
@@ -35,6 +45,7 @@ class FichaApi extends ResourceController
 
         return $this->respondCreated(['id' => $fichaId]);
     }
+
     public function minhaFicha()
     {
         $usuario = session()->get('usuarioLogado');
@@ -93,4 +104,37 @@ class FichaApi extends ResourceController
         ]);
     }
 
+    public function listar()
+    {
+        $model = new \App\Models\FichaModel();
+
+        $statusFiltro = $this->request->getGet('status');
+        $query = $model->orderBy('criado_em', 'ASC');
+
+        if ($statusFiltro && in_array($statusFiltro, ['aguardando', 'em_atendimento', 'atendido'])) {
+            $query->where('status', $statusFiltro);
+        }
+
+        $fichas = $query->findAll();
+
+        $posicao = 1;
+        foreach ($fichas as &$ficha) {
+            if ($ficha['status'] === 'aguardando') {
+                $ficha['posicao'] = $posicao++;
+                $criado = new \DateTime($ficha['criado_em'], new \DateTimeZone('America/Sao_Paulo'));
+                $agora = new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
+                $intervalo = $criado->diff($agora);
+                $ficha['tempo_espera'] = $intervalo->format('%H:%I:%S');
+            } else {
+                $ficha['posicao'] = '—';
+                $ficha['tempo_espera'] = '—';
+            }
+
+            $ficha['data_formatada'] = date('d/m/Y H:i', strtotime($ficha['criado_em']));
+        }
+
+        return $this->respond($fichas);
+    }
 }
+
+
