@@ -60,7 +60,7 @@ Crie um arquivo `.env` com base no `.env.example` abaixo e configure o acesso ao
 database.default.hostname = localhost
 database.default.database = sistema_filas
 database.default.username = root
-database.default.password = root
+database.default.password = 
 database.default.DBDriver = MySQLi
 ```
 
