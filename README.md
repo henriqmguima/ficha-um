@@ -42,8 +42,8 @@ A inciativa do projeto veio através de suprir uma demanda do pronto atendimento
 1. **Clone o repositório**
 
 ```bash
-git clone https://github.com/henriqmguima/gerenciamento-de-fila-para-sa-de
-cd gerenciamento-de-fila-para-sa-de
+git clone https://github.com/henriqmguima/ficha-um
+cd ficha-um
 ```
 
 2. **Instale as dependências**
