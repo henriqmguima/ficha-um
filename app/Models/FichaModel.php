@@ -20,7 +20,6 @@ class FichaModel extends Model
         'criado_em',
     ];
 
-    // Se quiser que o CodeIgniter gerencie os timestamps:
     protected $useTimestamps = true;
     protected $createdField  = 'criado_em';
     protected $updatedField  = ''; // sem updated por enquanto

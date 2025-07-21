@@ -1,59 +1,61 @@
 <?php
+
 namespace App\Controllers\Admin;
+
 use App\Controllers\BaseController;
 use App\Models\FichaModel;
 use App\Models\UsuarioModel;
 
 class FichaController extends BaseController
 {
-public function index()
-{
-    $usuario = session()->get('usuarioLogado');
+    public function index()
+    {
+        $usuario = session()->get('usuarioLogado');
 
-    if (!is_array($usuario) || !isset($usuario['is_admin']) || !$usuario['is_admin']) {
-        return redirect()->to('/users'); // redireciona usuário comum para a tela pública
-    }
-
-    $model = new FichaModel();
-
-    $statusFiltro = $this->request->getGet('status');
-    $builder = $model->orderBy('criado_em', 'ASC');
-
-    if ($statusFiltro && in_array($statusFiltro, ['aguardando', 'em_atendimento', 'atendido'])) {
-        $builder->where('status', $statusFiltro);
-    }
-
-    $fichas = $builder->findAll();
-
-    $posicao = 1;
-    foreach ($fichas as &$ficha) {
-        if ($ficha['status'] === 'aguardando') {
-            $ficha['posicao'] = $posicao++;
-
-            $criado = new \DateTime($ficha['criado_em'], new \DateTimeZone('America/Sao_Paulo'));
-            $agora = new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
-            $intervalo = $criado->diff($agora);
-            $ficha['tempo_espera'] = $intervalo->format('%H:%I:%S');
-        } else {
-            $ficha['posicao'] = '—';
-            $ficha['tempo_espera'] = '—';
+        if (!is_array($usuario) || !isset($usuario['is_admin']) || !$usuario['is_admin']) {
+            return redirect()->to('/users'); // redireciona usuário comum para a tela pública
         }
 
-        $ficha['data_formatada'] = date('d/m/Y H:i', strtotime($ficha['criado_em']));
+        $model = new FichaModel();
+
+        $statusFiltro = $this->request->getGet('status');
+        $builder = $model->orderBy('criado_em', 'ASC');
+
+        if ($statusFiltro && in_array($statusFiltro, ['aguardando', 'em_atendimento', 'atendido'])) {
+            $builder->where('status', $statusFiltro);
+        }
+
+        $fichas = $builder->findAll();
+
+        $posicao = 1;
+        foreach ($fichas as &$ficha) {
+            if ($ficha['status'] === 'aguardando') {
+                $ficha['posicao'] = $posicao++;
+
+                $criado = new \DateTime($ficha['criado_em'], new \DateTimeZone('America/Sao_Paulo'));
+                $agora = new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
+                $intervalo = $criado->diff($agora);
+                $ficha['tempo_espera'] = $intervalo->format('%H:%I:%S');
+            } else {
+                $ficha['posicao'] = '—';
+                $ficha['tempo_espera'] = '—';
+            }
+
+            $ficha['data_formatada'] = date('d/m/Y H:i', strtotime($ficha['criado_em']));
+        }
+
+
+
+
+        $usuarioModel = new \App\Models\UsuarioModel();
+        $usuarios = $usuarioModel->where('is_admin', 0)->findAll();
+
+        return view('admin/fichas/index', [
+            'fichas' => $fichas,
+            'statusAtual' => $statusFiltro ?? 'todos',
+            'usuarios' => $usuarios, // necessário para o modal
+        ]);
     }
-
-
-
-
-    $usuarioModel = new \App\Models\UsuarioModel();
-    $usuarios = $usuarioModel->where('is_admin', 0)->findAll();
-
-    return view('admin/fichas/index', [
-        'fichas' => $fichas,
-        'statusAtual' => $statusFiltro ?? 'todos',
-        'usuarios' => $usuarios, // necessário para o modal
-    ]);
-}
 
     public function create()
     {
@@ -117,4 +119,3 @@ public function index()
         return redirect()->to(site_url('admin/fichas'));
     }
 }
-
