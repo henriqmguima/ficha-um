@@ -12,28 +12,35 @@ class FichaController extends BaseController
     {
         $usuario = session()->get('usuarioLogado');
 
-        if (!is_array($usuario) || !isset($usuario['is_admin']) || !$usuario['is_admin']) {
-            return redirect()->to('/users'); // redireciona usuário comum para a tela pública
+        // Somente Admins ou Diretores podem acessar
+        if (!$usuario || (!isset($usuario['id_admin']) && !isset($usuario['id_diretor']))) {
+            return redirect()->to('/users');
         }
 
         $model = new FichaModel();
 
         $statusFiltro = $this->request->getGet('status');
-        $builder = $model->orderBy('criado_em', 'ASC');
+        $builder = $model->orderBy('created_at', 'ASC');
 
-        if ($statusFiltro && in_array($statusFiltro, ['aguardando', 'em_atendimento', 'atendido'])) {
+        if ($statusFiltro && in_array($statusFiltro, ['triagem', 'aguardando', 'chamado'])) {
             $builder->where('status', $statusFiltro);
+        }
+
+        // Se tiver unidade associada, filtra por ela
+        if (isset($usuario['unidade_id'])) {
+            $builder->where('unidade_id', $usuario['unidade_id']);
         }
 
         $fichas = $builder->findAll();
 
+        // Calcular posição e tempo de espera
         $posicao = 1;
         foreach ($fichas as &$ficha) {
             if ($ficha['status'] === 'aguardando') {
                 $ficha['posicao'] = $posicao++;
 
-                $criado = new \DateTime($ficha['criado_em'], new \DateTimeZone('America/Sao_Paulo'));
-                $agora = new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
+                $criado = new \DateTime($ficha['created_at'], new \DateTimeZone('America/Sao_Paulo'));
+                $agora  = new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
                 $intervalo = $criado->diff($agora);
                 $ficha['tempo_espera'] = $intervalo->format('%H:%I:%S');
             } else {
@@ -41,68 +48,70 @@ class FichaController extends BaseController
                 $ficha['tempo_espera'] = '—';
             }
 
-            $ficha['data_formatada'] = date('d/m/Y H:i', strtotime($ficha['criado_em']));
+            $ficha['data_formatada'] = date('d/m/Y H:i', strtotime($ficha['created_at']));
         }
 
-
-
-
-        $usuarioModel = new \App\Models\UsuarioModel();
-        $usuarios = $usuarioModel->where('is_admin', 0)->findAll();
+        $usuarioModel = new UsuarioModel();
+        $usuarios = $usuarioModel->where('unidade_id', $usuario['unidade_id'])->findAll();
 
         return view('admin/fichas/index', [
-            'fichas' => $fichas,
+            'fichas'      => $fichas,
             'statusAtual' => $statusFiltro ?? 'todos',
-            'usuarios' => $usuarios, // necessário para o modal
+            'usuarios'    => $usuarios, // para o modal de criar ficha
         ]);
     }
 
     public function create()
     {
+        $usuario = session()->get('usuarioLogado');
         $usuarioModel = new UsuarioModel();
-        $usuarios = $usuarioModel->where('is_admin', 0)->findAll(); // apenas usuários comuns
+
+        $usuarios = $usuarioModel->where('unidade_id', $usuario['unidade_id'])->findAll();
 
         return view('admin/fichas/create', ['usuarios' => $usuarios]);
     }
+
     public function store()
     {
-        $usuarioModel = new \App\Models\UsuarioModel();
+        $usuario = session()->get('usuarioLogado');
+        $usuarioModel = new UsuarioModel();
+
         $cpf = $this->request->getPost('cpf');
-        $paciente = $usuarioModel->where('cpf', $cpf)->first();
+        $paciente = $usuarioModel->where('cpf', $cpf)
+            ->where('unidade_id', $usuario['unidade_id'])
+            ->first();
 
         if (!$paciente) {
             return redirect()->back()->with('error', 'Paciente não encontrado.');
         }
 
         $model = new FichaModel();
-
-        $model->save([
-            'usuario_id'        => $paciente['id'],
-            'nome_paciente'     => $paciente['nome'],
-            'cpf'               => $paciente['cpf'],
-            'tipo_atendimento'  => $this->request->getPost('tipo_atendimento'),
-            'status'            => 'aguardando',
-            'criado_em'         => date('Y-m-d H:i:s'),
+        $model->insert([
+            'usuario_id'       => $paciente['id'],
+            'nome_paciente'    => $paciente['nome'],
+            'cpf'              => $paciente['cpf'],
+            'tipo_atendimento' => $this->request->getPost('tipo_atendimento'),
+            'status'           => 'aguardando',
+            'unidade_id'       => $usuario['unidade_id'],
+            'created_at'        => date('Y-m-d H:i:s'),
         ]);
 
         return redirect()->to(site_url('admin/fichas'));
     }
-
-
 
     public function updateStatus($id = null, $novoStatus = null)
     {
         $model = new FichaModel();
         $ficha = $model->find($id);
 
-        if ($ficha && in_array($novoStatus, ['aguardando', 'em_atendimento', 'atendido'])) {
+        if ($ficha && in_array($novoStatus, ['triagem', 'aguardando', 'chamado'])) {
             $dados = ['status' => $novoStatus];
 
-            if ($novoStatus === 'em_atendimento') {
+            if ($novoStatus === 'aguardando') {
                 $dados['inicio_atendimento'] = date('Y-m-d H:i:s');
             }
 
-            if ($novoStatus === 'atendido') {
+            if ($novoStatus === 'chamado') {
                 $dados['fim_atendimento'] = date('Y-m-d H:i:s');
             }
 
@@ -111,6 +120,7 @@ class FichaController extends BaseController
 
         return redirect()->to(site_url('admin/fichas'));
     }
+
     public function delete($id = null)
     {
         $model = new FichaModel();

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers\Api;
 
 use CodeIgniter\RESTful\ResourceController;
@@ -40,7 +41,7 @@ class FichaApi extends ResourceController
             'nome_paciente'    => $data['nome_paciente'],
             'tipo_atendimento' => $data['tipo_atendimento'] ?? null,
             'status'           => 'aguardando',
-            'criado_em'        => date('Y-m-d H:i:s'),
+            'created_at'        => date('Y-m-d H:i:s'),
         ]);
 
         return $this->respondCreated(['id' => $fichaId]);
@@ -57,12 +58,12 @@ class FichaApi extends ResourceController
         if ($usuario) {
             $minhaFicha = $model
                 ->where('usuario_id', $usuario['id'])
-                ->orderBy('criado_em', 'DESC')
+                ->orderBy('created_at', 'DESC')
                 ->first();
         } elseif ($cpf) {
             $minhaFicha = $model
                 ->where('cpf', $cpf)
-                ->orderBy('criado_em', 'DESC')
+                ->orderBy('created_at', 'DESC')
                 ->first();
         } elseif ($id) {
             $minhaFicha = $model->find($id);
@@ -84,7 +85,7 @@ class FichaApi extends ResourceController
 
         $todas = $model
             ->where('status', 'aguardando')
-            ->orderBy('criado_em', 'ASC')
+            ->orderBy('created_at', 'ASC')
             ->findAll();
 
         $posicao = 1;
@@ -109,7 +110,7 @@ class FichaApi extends ResourceController
         $model = new \App\Models\FichaModel();
 
         $statusFiltro = $this->request->getGet('status');
-        $query = $model->orderBy('criado_em', 'ASC');
+        $query = $model->orderBy('created_at', 'ASC');
 
         if ($statusFiltro && in_array($statusFiltro, ['aguardando', 'em_atendimento', 'atendido'])) {
             $query->where('status', $statusFiltro);
@@ -121,7 +122,7 @@ class FichaApi extends ResourceController
         foreach ($fichas as &$ficha) {
             if ($ficha['status'] === 'aguardando') {
                 $ficha['posicao'] = $posicao++;
-                $criado = new \DateTime($ficha['criado_em'], new \DateTimeZone('America/Sao_Paulo'));
+                $criado = new \DateTime($ficha['created_at'], new \DateTimeZone('America/Sao_Paulo'));
                 $agora = new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
                 $intervalo = $criado->diff($agora);
                 $ficha['tempo_espera'] = $intervalo->format('%H:%I:%S');
@@ -130,11 +131,9 @@ class FichaApi extends ResourceController
                 $ficha['tempo_espera'] = '—';
             }
 
-            $ficha['data_formatada'] = date('d/m/Y H:i', strtotime($ficha['criado_em']));
+            $ficha['data_formatada'] = date('d/m/Y H:i', strtotime($ficha['created_at']));
         }
 
         return $this->respond($fichas);
     }
 }
-
-

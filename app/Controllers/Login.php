@@ -1,16 +1,16 @@
 <?php
-// Ajustado: Login.php
 
 namespace App\Controllers;
 
+use App\Models\AdminModel;
+use App\Models\DiretorModel;
 use App\Models\UsuarioModel;
-use App\Models\PostoModel;
 
 class Login extends BaseController
 {
     public function index()
     {
-        return view('login');
+        return view('auth/login');
     }
 
     public function autenticar()
@@ -18,26 +18,55 @@ class Login extends BaseController
         $cpf   = $this->request->getPost('cpf');
         $senha = $this->request->getPost('senha');
 
-        $model   = new UsuarioModel();
-        $usuario = $model->where('cpf', $cpf)->first();
+        // 🔹 Admin
+        $adminModel = new AdminModel();
+        $admin = $adminModel->where('cpf', $cpf)->first();
 
-        if ($usuario && password_verify($senha, $usuario['senha'])) {
-            // Setar somente os dados essenciais na sessão
+        if ($admin && password_verify($senha, $admin['senha_hash'])) {
+            session()->set('usuarioLogado', [
+                'id'        => $admin['id'],
+                'nome'      => $admin['nome'],
+                'cpf'       => $admin['cpf'],
+                'email'     => $admin['email'],
+                'unidade_id' => $admin['unidade_id'] ?? null,
+                'tipo'      => 'admin'
+            ]);
+            return redirect()->to('/painel');
+        }
+
+        // 🔹 Diretor
+        $diretorModel = new DiretorModel();
+        $diretor = $diretorModel->where('cpf', $cpf)->first();
+
+        if ($diretor && password_verify($senha, $diretor['senha_hash'])) {
+            session()->set('usuarioLogado', [
+                'id'        => $diretor['id'],
+                'nome'      => $diretor['nome'],
+                'cpf'       => $diretor['cpf'],
+                'email'     => $diretor['email'],
+                'unidade_id' => $diretor['unidade_id'],
+                'tipo'      => 'diretor'
+            ]);
+            return redirect()->to('/painel');
+        }
+
+        // 🔹 Usuário comum
+        $usuarioModel = new UsuarioModel();
+        $usuario = $usuarioModel->where('cpf', $cpf)->first();
+
+        if ($usuario && password_verify($senha, $usuario['senha_hash'])) {
             session()->set('usuarioLogado', [
                 'id'        => $usuario['id'],
                 'nome'      => $usuario['nome'],
-                'cpf'       => $usuario['cpf'],     
-                'is_admin'  => $usuario['is_admin'],
-                'posto_id'  => $usuario['posto_id'],
+                'cpf'       => $usuario['cpf'],
+                'email'     => $usuario['email'],
+                'unidade_id' => $usuario['unidade_id'],
+                'tipo'      => 'usuario'
             ]);
-
-            if ($usuario['is_admin']) {
-                return redirect()->to('/painel');
-            } else {
-                return redirect()->to('/users');
-            }
+            return redirect()->to('/users');
         }
 
+        // Falha
         return redirect()->back()->with('erro', 'CPF ou senha inválidos');
     }
 

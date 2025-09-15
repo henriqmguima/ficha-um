@@ -12,13 +12,11 @@ class AdminAuth implements FilterInterface
     {
         $usuario = session()->get('usuarioLogado');
 
-        if (!is_array($usuario) || empty($usuario['is_admin'])) {
-            return redirect()->to('/fila'); // se não for admin, vai pra fila pública
+        if (!$usuario || empty($usuario['is_admin'])) {
+            return redirect()->to('/login')
+                ->with('error', 'Acesso restrito a administradores.');
         }
     }
 
-    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
-    {
-        // nada aqui
-    }
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null) {}
 }

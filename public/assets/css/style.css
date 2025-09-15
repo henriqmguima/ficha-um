@@ -1,8 +1,13 @@
 /* Reset básico */
-body, html {
-    height: 100%;
+body,
+html {
+    min-height: 100vh;
+    /* ocupa toda a altura da tela sem cortar */
     margin: 0;
+    padding: 0;
+
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -27,7 +32,6 @@ body, html {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--azul-medio); 
     text-align: right;
     padding: 10px 20px;
     font-size: 0.9rem;
@@ -35,4 +39,3 @@ body, html {
     border-top: 1px solid var(--cinza-medio);
     z-index: 100;
 }
-

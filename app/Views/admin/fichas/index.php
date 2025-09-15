@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fila de Atendimento | Ficha Um</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/admin/index.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/admin/modal.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/registrar.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="shortcut icon" href="<?php echo base_url('assets/images/logo/favicon.ico'); ?>" type="image/x-icon">
     <script defer src="<?= base_url('assets/js/admin/modal_create_usuario.js') ?>"></script>
@@ -17,6 +18,7 @@
     <script defer src="<?= base_url('assets/js/admin/fila_admin.js') ?>"></script>
 
 </head>
+
 <body class="admin-body">
     <button class="menu-toggle" onclick="toggleSidebar()">
         <i class="fa fa-bars"></i>
@@ -52,7 +54,9 @@
             <div class="tabela-wrapper">
                 <table id="tabela-fichas">
                     <tbody id="tabela-fichas">
-                        <tr><td colspan="8">Carregando fichas...</td></tr>
+                        <tr>
+                            <td colspan="8">Carregando fichas...</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -64,4 +68,5 @@
     <?= view('admin/fichas/modal_create', ['usuarios' => $usuarios]) ?>
     <?= view('admin/modal_create_usuario') ?>
 </body>
+
 </html>

@@ -7,52 +7,55 @@ use App\Models\UsuarioModel;
 
 class UsuarioController extends BaseController
 {
-    public function create()
-    {
-        return view('admin/modal_create_usuario');
-    }
-
     public function store()
     {
-        helper('text');
-        $model = new UsuarioModel();
+        helper(['text', 'form']);
+        $usuarioModel = new UsuarioModel();
 
         $usuarioLogado = session()->get('usuarioLogado');
 
-        if (!$usuarioLogado || !isset($usuarioLogado['posto_id'])) {
+        // Só Admin ou Diretor pode cadastrar novos usuários
+        if (!$usuarioLogado || !isset($usuarioLogado['tipo']) || !in_array($usuarioLogado['tipo'], ['admin', 'diretor'])) {
             return $this->response->setJSON([
                 'success' => false,
-                'message' => 'Posto não identificado na sessão.'
+                'message' => 'Acesso negado. Apenas administradores ou diretores podem cadastrar usuários.'
             ]);
         }
 
-        $senhaPura = random_string('alnum', 8);
-        $senhaHash = password_hash($senhaPura, PASSWORD_DEFAULT);
-
-        $salvo = $model->insert([
-            'cpf'        => $this->request->getPost('cpf'),
-            'nome'       => $this->request->getPost('nome'),
-            'cartao_sus' => $this->request->getPost('cartao_sus'),
-            'endereco'   => $this->request->getPost('endereco'),
-            'email'      => $this->request->getPost('email'),
-            'senha'      => $senhaHash,
-            'is_admin'   => $this->request->getPost('is_admin') ? 1 : 0,
-            'posto_id'   => $usuarioLogado['posto_id'],
-            'criado_em'  => date('Y-m-d H:i:s'),
-        ]);
-
-        if (!$salvo) {
+        if (!isset($usuarioLogado['unidade_id'])) {
             return $this->response->setJSON([
                 'success' => false,
-                'message' => 'Erro ao salvar usuário.'
+                'message' => 'Unidade não identificada na sessão.'
+            ]);
+        }
+
+        // Gera senha forte
+        $senhaPura = $this->gerarSenhaForte(8);
+        $senhaHash = password_hash($senhaPura, PASSWORD_DEFAULT);
+
+        $data = [
+            'cpf'                  => $this->request->getPost('cpf'),
+            'nome'                 => $this->request->getPost('nome'),
+            'cartao_sus'           => $this->request->getPost('cartao_sus'),
+            'endereco'             => $this->request->getPost('endereco'),
+            'telefone'             => $this->request->getPost('telefone'),
+            'email'                => $this->request->getPost('email'),
+            'senha_hash'           => $senhaHash,
+            'unidade_id'           => $usuarioLogado['unidade_id'], // unidade do admin/diretor
+            'autenticacao_status'  => 'pendente',
+            'created_at'           => date('Y-m-d H:i:s'),
+        ];
+
+        if (!$usuarioModel->insert($data)) {
+            return $this->response->setJSON([
+                'success' => false,
+                'errors'  => $usuarioModel->errors()
             ]);
         }
 
         return $this->response->setJSON([
             'success' => true,
-            'senha' => $senhaPura
+            'senha'   => $senhaPura
         ]);
     }
-
-
 }
