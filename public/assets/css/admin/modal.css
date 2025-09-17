@@ -107,17 +107,17 @@ input[type="checkbox"] {
 }
 
 /* === BOTÃO FECHAR === */
-.close,
-.modal-close {
+.close {
     position: absolute;
     top: 12px;
-    right: 16px;
+    left: 16px;
     font-size: 22px;
-    color: #aaa;
+    color: red;
     background: none;
     border: none;
     cursor: pointer;
     font-weight: bold;
+    background-color: red;
 }
 
 .close:hover,

@@ -6,20 +6,20 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 
-class AdminAuth implements FilterInterface
+class Auth implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
         $usuario = session()->get('usuarioLogado');
 
-        // Permite admin ou diretor (mesmo painel)
-        if (!$usuario || !isset($usuario['tipo']) || !in_array($usuario['tipo'], ['admin', 'diretor'])) {
-            return redirect()->to('/login')->with('error', 'Acesso restrito a administradores/diretores.');
+        if (!$usuario) {
+            // Se não estiver logado, redireciona ou retorna erro
+            return redirect()->to('/login');
         }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        // nada
+        // nada aqui
     }
 }

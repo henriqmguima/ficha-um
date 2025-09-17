@@ -6,7 +6,7 @@
 
         <form action="<?= site_url('admin/fichas/store') ?>" method="post">
             <label for="cpf">Selecione o paciente:</label>
-            <select name="cpf" id="cpf" required>
+            <select name="cpf" id="cpf-ficha" required>
                 <option value="">-- Selecione --</option>
                 <?php foreach ($usuarios as $usuario): ?>
                     <option value="<?= esc($usuario['cpf']) ?>">

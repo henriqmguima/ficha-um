@@ -95,8 +95,8 @@ body.login-body {
 .form-sections {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-top: 20px;
+    /* duas colunas */
+    gap: 20px;
 }
 
 /* Cada bloco */
@@ -144,6 +144,8 @@ body.login-body {
     box-shadow: 0 0 6px rgba(79, 110, 247, 0.3);
 }
 
+
+
 /* Botão alinhado abaixo dos blocos */
 form button {
     grid-column: span 2;
@@ -188,6 +190,12 @@ form button:hover {
     }
 }
 
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Overlay */
 .modal-overlay {
     position: fixed;
@@ -206,6 +214,27 @@ form button:hover {
     /* desfoca fundo */
 }
 
+.close {
+    margin-left: auto;
+    /* empurra o botão para a direita */
+    margin-right: 5px;
+    font-size: 30px;
+    color: #0cc0df;
+    cursor: pointer;
+    display: block;
+    /* garante que o margin-left:auto funcione */
+    text-align: right;
+    /* se for inline, ajuda a alinhar o conteúdo */
+}
+
+.feedbackForm {
+    margin-top: 0.3rem;
+    padding: .8rem;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #fff;
+}
+
 /* Quando abrir */
 .modal-overlay.show {
     display: flex;
@@ -215,11 +244,22 @@ form button:hover {
 .modal-content {
     background: #fff;
     padding: 2rem;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 500px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    width: 95%;
+    max-width: 900px;
+    /* aumenta o tamanho do form */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     animation: fadeInUp 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 26px;
+    color: #333;
 }
 
 /* Animação de entrada */

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/admin/index.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/registrar.css') ?>">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="shortcut icon" href="<?php echo base_url('assets/images/logo/favicon.ico'); ?>" type="image/x-icon">
     <script defer src="<?= base_url('assets/js/admin/modal_create_usuario.js') ?>"></script>
@@ -66,7 +67,7 @@
         </main>
     </div>
     <?= view('admin/fichas/modal_create', ['usuarios' => $usuarios]) ?>
-    <?= view('admin/modal_create_usuario') ?>
+    <?= view('admin/fichas/modal_create_usuario') ?>
 </body>
 
 </html>

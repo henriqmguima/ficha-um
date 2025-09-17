@@ -64,29 +64,29 @@ $routes->group('api/v1', ['namespace' => 'App\Controllers\Api'], function ($rout
 
     // Registro remoto de usuários
     $routes->post('usuarios', 'UsuariosController::create');
-
+    $routes->get('minha-ficha', 'FichasController::minhaFicha');
     // Admin/Diretor (com filtro de autenticação)
     $routes->group('', ['filter' => 'auth:admin_or_diretor'], function ($routes) {
         $routes->patch('usuarios/(:num)/aprovar', 'UsuariosController::aprovar/$1');
 
-        // Fichas
-        $routes->resource('fichas', ['controller' => 'FichasController', 'only' => ['index', 'show', 'create']]);
-        $routes->get('fichas/fila/triagem', 'FichasController::filaTriagem');
-        $routes->get('fichas/fila/atendimento', 'FichasController::filaAtendimento');
+        // Fichas (Admin/Diretor)
+        $routes->resource('fichas', ['controller' => 'FichaApi', 'only' => ['index', 'show', 'create']]);
+        $routes->get('fichas/fila/triagem', 'FichaApi::filaTriagem');
+        $routes->get('fichas/fila/atendimento', 'FichaApi::filaAtendimento');
 
         // Transições de status
-        $routes->patch('fichas/(:num)/autenticar', 'FichasController::autenticar/$1');
-        $routes->patch('fichas/(:num)/iniciar-triagem', 'FichasController::iniciarTriagem/$1');
-        $routes->patch('fichas/(:num)/finalizar-triagem', 'FichasController::finalizarTriagem/$1');
-        $routes->patch('fichas/(:num)/iniciar-atendimento', 'FichasController::iniciarAtendimento/$1');
-        $routes->patch('fichas/(:num)/finalizar-atendimento', 'FichasController::finalizarAtendimento/$1');
-        $routes->patch('fichas/(:num)/cancelar', 'FichasController::cancelar/$1');
-        $routes->patch('fichas/(:num)/no-show', 'FichasController::noShow/$1');
+        $routes->patch('fichas/(:num)/autenticar', 'FichaApi::autenticar/$1');
+        $routes->patch('fichas/(:num)/iniciar-triagem', 'FichaApi::iniciarTriagem/$1');
+        $routes->patch('fichas/(:num)/finalizar-triagem', 'FichaApi::finalizarTriagem/$1');
+        $routes->patch('fichas/(:num)/iniciar-atendimento', 'FichaApi::iniciarAtendimento/$1');
+        $routes->patch('fichas/(:num)/finalizar-atendimento', 'FichaApi::finalizarAtendimento/$1');
+        $routes->patch('fichas/(:num)/cancelar', 'FichaApi::cancelar/$1');
+        $routes->patch('fichas/(:num)/no-show', 'FichaApi::noShow/$1');
     });
 
     // Usuário autenticado comum
     $routes->group('', ['filter' => 'auth:usuario'], function ($routes) {
-        $routes->get('minha-ficha', 'FichasController::minhaFicha');
-        $routes->post('fichas', 'FichasController::create');
+        $routes->get('minha-ficha', 'FichaApi::minhaFicha');   // 👈 agora vai chamar o certo
+        $routes->post('fichas', 'FichaApi::create');
     });
 });

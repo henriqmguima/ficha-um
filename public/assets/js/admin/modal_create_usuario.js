@@ -3,7 +3,6 @@ console.log('Modal Create JS Loaded');
 function abrirModal_Usuario() {
     document.getElementById('modalUsuario').classList.add('show');
 }
-formData.append('<?= csrf_token() ?>', '<?= csrf_hash() ?>');
 
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('formUsuario');
@@ -17,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // limpar mensagens anteriores
         feedback.innerHTML = '';
         feedback.className = '';
+        document.querySelectorAll('.erro-msg').forEach(el => el.remove());
 
         const formData = new FormData(form);
 
@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             const json = await response.json();
+            console.log(json); // 👈 aqui você vê o objeto completo no console
 
             if (json.success) {
                 campoSenha.innerText = json.senha;
@@ -36,11 +37,31 @@ document.addEventListener('DOMContentLoaded', function () {
                 feedback.className = 'alert alert-success mt-3';
                 feedback.innerHTML = 'Usuário cadastrado com sucesso! Anote a senha abaixo.';
             } else {
-                feedback.className = 'alert alert-danger mt-3';
-                feedback.innerHTML = json.message || 'Erro ao cadastrar.';
+                if (json.errors) {
+                    for (const campo in json.errors) {
+                        // tenta pegar pelo id do campo
+                        let input = document.getElementById(campo);
+
+                        // se não encontrar, tenta pelo padrão "_usuario"
+                        if (!input) {
+                            input = document.getElementById(campo + '_usuario');
+                        }
+
+                        if (input) {
+                            const small = document.createElement('small');
+                            small.className = 'erro-msg text-danger';
+                            small.innerText = json.errors[campo];
+                            input.insertAdjacentElement('afterend', small);
+                        }
+                    }
+                }
+
+
+                feedback.className = 'feedbackForm';
+                feedback.innerHTML = json.message || 'Por favor, corrija os erros no formulário.';
             }
         } catch (error) {
-            feedback.className = 'alert alert-danger mt-3';
+            feedback.className = 'feedbackForm';
             feedback.innerHTML = 'Erro de comunicação com o servidor. Tente novamente.';
         }
     });
