@@ -16,7 +16,6 @@ class CreatePostos extends Migration
             'cep'        => ['type' => 'VARCHAR', 'constraint' => 10],
             'cidade'     => ['type' => 'VARCHAR', 'constraint' => 100],
             'estado'     => ['type' => 'VARCHAR', 'constraint' => 100],
-            'pais'       => ['type' => 'VARCHAR', 'constraint' => 100],
             'tipo'       => ['type' => 'ENUM', 'constraint' => ['publico', 'privado']],
             'criado_em' => ['type' => 'DATETIME', 'null' => false],
         ]);

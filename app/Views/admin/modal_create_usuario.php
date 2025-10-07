@@ -20,9 +20,15 @@
             <label>Email:</label>
             <input type="email" name="email">
 
-            <label class="checkbox-label">
-                É administrador? <input type="checkbox" name="is_admin" value="1"> 
-            </label>
+            <div class="form-group">
+                <label for="role">Função:</label>
+                <select name="role" id="role" class="form-control" required>
+                    <option value="usuario">Usuário (paciente)</option>
+                    <option value="medico">Médico</option>
+                    <option value="diretor">Diretor</option>
+                    <option value="admin">Administrador</option>
+                </select>
+            </div>
 
             <button type="submit" class="btn">Cadastrar</button>
         </form>

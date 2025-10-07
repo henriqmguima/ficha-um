@@ -19,7 +19,6 @@ class DemoSeeder extends Seeder
             'cep'       => '96745000',
             'cidade'    => 'Charqueadas',
             'estado'    => 'Rio Grande do Sul',
-            'pais'      => 'Brasil',
             'criado_em' => date('Y-m-d H:i:s')
         ]);
 
@@ -32,7 +31,7 @@ class DemoSeeder extends Seeder
                 'nome'      => 'Admin 1',
                 'email'     => 'admin1@teste.com',
                 'senha'     => password_hash('admin123', PASSWORD_DEFAULT),
-                'is_admin'  => 1,
+                'role'  => "admin",
                 'posto_id'  => $postoId,
                 'criado_em' => date('Y-m-d H:i:s')
             ],
@@ -41,7 +40,7 @@ class DemoSeeder extends Seeder
                 'nome'      => 'Admin 2',
                 'email'     => 'admin2@teste.com',
                 'senha'     => password_hash('admin123', PASSWORD_DEFAULT),
-                'is_admin'  => 1,
+                'role'  => "admin",
                 'posto_id'  => $postoId,
                 'criado_em' => date('Y-m-d H:i:s')
             ]

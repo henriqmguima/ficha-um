@@ -15,8 +15,7 @@ class PostoModel extends Model
         'cep',
         'cidade',
         'estado',
-        'pais',
         'criado_em'
     ];
-    protected $useTimestamps = false; 
+    protected $useTimestamps = false;
 }

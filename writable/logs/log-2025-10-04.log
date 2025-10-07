@@ -1,0 +1,231 @@
+ERROR - 2025-10-04 14:14:31 --> mysqli_sql_exception: Duplicate column name 'posto_id' in C:\wamp64\www\ficha-um\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\wamp64\www\ficha-um\system\Database\MySQLi\Connection.php(327): mysqli->query('ALTER TABLE `us...', 0)
+#1 C:\wamp64\www\ficha-um\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `us...')
+#2 C:\wamp64\www\ficha-um\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `us...')
+#3 C:\wamp64\www\ficha-um\system\Database\Forge.php(772): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `us...')
+#4 C:\wamp64\www\ficha-um\app\Database\Migrations\2025-10-04-171413_AddPostoIdToUsuarios.php(11): CodeIgniter\Database\Forge->addColumn('usuarios', Array)
+#5 C:\wamp64\www\ficha-um\system\Database\MigrationRunner.php(876): App\Database\Migrations\AddPostoIdToUsuarios->up()
+#6 C:\wamp64\www\ficha-um\system\Database\MigrationRunner.php(182): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\wamp64\www\ficha-um\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\wamp64\www\ficha-um\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\wamp64\www\ficha-um\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\wamp64\www\ficha-um\system\Boot.php(360): CodeIgniter\CLI\Console->run()
+#11 C:\wamp64\www\ficha-um\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\wamp64\www\ficha-um\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-10-04 14:15:29 --> mysqli_sql_exception: Duplicate column name 'posto_id' in C:\wamp64\www\ficha-um\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\wamp64\www\ficha-um\system\Database\MySQLi\Connection.php(327): mysqli->query('ALTER TABLE `us...', 0)
+#1 C:\wamp64\www\ficha-um\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `us...')
+#2 C:\wamp64\www\ficha-um\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `us...')
+#3 C:\wamp64\www\ficha-um\system\Database\Forge.php(772): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `us...')
+#4 C:\wamp64\www\ficha-um\app\Database\Migrations\2025-10-04-171413_AddPostoIdToUsuarios.php(11): CodeIgniter\Database\Forge->addColumn('usuarios', Array)
+#5 C:\wamp64\www\ficha-um\system\Database\MigrationRunner.php(876): App\Database\Migrations\AddPostoIdToUsuarios->up()
+#6 C:\wamp64\www\ficha-um\system\Database\MigrationRunner.php(182): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\wamp64\www\ficha-um\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\wamp64\www\ficha-um\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\wamp64\www\ficha-um\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\wamp64\www\ficha-um\system\Boot.php(360): CodeIgniter\CLI\Console->run()
+#11 C:\wamp64\www\ficha-um\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\wamp64\www\ficha-um\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+DEBUG - 2025-10-04 14:22:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:22:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:25:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:25:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:25:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:25:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:26:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:26:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:26:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:26:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:26:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:27:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:27:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:27:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-04 14:27:26 --> mysqli_sql_exception: Duplicate entry '00011122233' for key 'usuarios.cpf' in C:\wamp64\www\ficha-um\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\wamp64\www\ficha-um\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `us...', 0)
+#1 C:\wamp64\www\ficha-um\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
+#2 C:\wamp64\www\ficha-um\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
+#3 C:\wamp64\www\ficha-um\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', Array, false)
+#4 C:\wamp64\www\ficha-um\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\wamp64\www\ficha-um\system\BaseModel.php(843): CodeIgniter\Model->doInsert(Array)
+#6 C:\wamp64\www\ficha-um\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\wamp64\www\ficha-um\app\Controllers\Admin\UsuarioController.php(32): CodeIgniter\Model->insert(Array)
+#8 C:\wamp64\www\ficha-um\system\CodeIgniter.php(933): App\Controllers\Admin\UsuarioController->store()
+#9 C:\wamp64\www\ficha-um\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UsuarioController))
+#10 C:\wamp64\www\ficha-um\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\wamp64\www\ficha-um\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\wamp64\www\ficha-um\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\wamp64\www\ficha-um\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\wamp64\www\ficha-um\system\rewrite.php(44): require_once('C:\\wamp64\\www\\f...')
+#15 {main}
+CRITICAL - 2025-10-04 14:27:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Duplicate entry '00011122233' for key 'usuarios.cpf'
+[Method: POST, Route: admin/usuarios/store]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `is_admin`, `posto_id`, `criado_em`) VALUES (:cpf:, :nome:, :cartao_sus:, :endereco:, :email:, :senha:, :is_admin:, :posto_id:, :criado_em:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(843): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Controllers\Admin\UsuarioController.php(32): CodeIgniter\Model->insert([...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\UsuarioController->store()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UsuarioController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha-um\\public\\index.php')
+CRITICAL - 2025-10-04 14:27:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Duplicate entry '00011122233' for key 'usuarios.cpf'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `is_admin`, `posto_id`, `criado_em`) VALUES (\'00011122233\', \'FULANINHO\', \'111\', \'RUA JOSE MANOEL GONZALES DE SOUZA, 761 - PARQUE MANOEL JOAO\', \'henriquemachadoguimaraes@gmail.com\', \'$2y$10$bZWLHK6qPRENY9pLoqn/ZekprQxNCgVFmfQueYKPs7Bceo0SgUFQO\', 0, \'2\', \'2025-10-04 14:27:26\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `is_admin`, `posto_id`, `criado_em`) VALUES (\'00011122233\', \'FULANINHO\', \'111\', \'RUA JOSE MANOEL GONZALES DE SOUZA, 761 - PARQUE MANOEL JOAO\', \'henriquemachadoguimaraes@gmail.com\', \'$2y$10$bZWLHK6qPRENY9pLoqn/ZekprQxNCgVFmfQueYKPs7Bceo0SgUFQO\', 0, \'2\', \'2025-10-04 14:27:26\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `is_admin`, `posto_id`, `criado_em`) VALUES (:cpf:, :nome:, :cartao_sus:, :endereco:, :email:, :senha:, :is_admin:, :posto_id:, :criado_em:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(843): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Controllers\Admin\UsuarioController.php(32): CodeIgniter\Model->insert([...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\UsuarioController->store()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UsuarioController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha-um\\public\\index.php')
+CRITICAL - 2025-10-04 14:27:26 --> [Caused by] mysqli_sql_exception: Duplicate entry '00011122233' for key 'usuarios.cpf'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `is_admin`, `posto_id`, `criado_em`) VALUES (\'00011122233\', \'FULANINHO\', \'111\', \'RUA JOSE MANOEL GONZALES DE SOUZA, 761 - PARQUE MANOEL JOAO\', \'henriquemachadoguimaraes@gmail.com\', \'$2y$10$bZWLHK6qPRENY9pLoqn/ZekprQxNCgVFmfQueYKPs7Bceo0SgUFQO\', 0, \'2\', \'2025-10-04 14:27:26\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `is_admin`, `posto_id`, `criado_em`) VALUES (\'00011122233\', \'FULANINHO\', \'111\', \'RUA JOSE MANOEL GONZALES DE SOUZA, 761 - PARQUE MANOEL JOAO\', \'henriquemachadoguimaraes@gmail.com\', \'$2y$10$bZWLHK6qPRENY9pLoqn/ZekprQxNCgVFmfQueYKPs7Bceo0SgUFQO\', 0, \'2\', \'2025-10-04 14:27:26\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `is_admin`, `posto_id`, `criado_em`) VALUES (\'00011122233\', \'FULANINHO\', \'111\', \'RUA JOSE MANOEL GONZALES DE SOUZA, 761 - PARQUE MANOEL JOAO\', \'henriquemachadoguimaraes@gmail.com\', \'$2y$10$bZWLHK6qPRENY9pLoqn/ZekprQxNCgVFmfQueYKPs7Bceo0SgUFQO\', 0, \'2\', \'2025-10-04 14:27:26\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`cpf`, `nome`, `cartao_sus`, `endereco`, `email`, `senha`, `is_admin`, `posto_id`, `criado_em`) VALUES (:cpf:, :nome:, :cartao_sus:, :endereco:, :email:, :senha:, :is_admin:, :posto_id:, :criado_em:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(843): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Admin\UsuarioController.php(32): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\UsuarioController->store()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UsuarioController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha-um\\public\\index.php')
+DEBUG - 2025-10-04 14:27:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:27:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:27:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:27:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:27:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:27:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-04 14:32:16 --> mysqli_sql_exception: Table 'sistema_filas.fichas' doesn't exist in C:\wamp64\www\ficha-um\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\wamp64\www\ficha-um\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\wamp64\www\ficha-um\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\wamp64\www\ficha-um\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\wamp64\www\ficha-um\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\wamp64\www\ficha-um\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\wamp64\www\ficha-um\system\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\wamp64\www\ficha-um\app\Controllers\Api\FichaApi.php(118): CodeIgniter\BaseModel->findAll()
+#7 C:\wamp64\www\ficha-um\system\CodeIgniter.php(933): App\Controllers\Api\FichaApi->listar()
+#8 C:\wamp64\www\ficha-um\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\FichaApi))
+#9 C:\wamp64\www\ficha-um\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\wamp64\www\ficha-um\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\wamp64\www\ficha-um\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\wamp64\www\ficha-um\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\wamp64\www\ficha-um\system\rewrite.php(44): require_once('C:\\wamp64\\www\\f...')
+#14 {main}
+CRITICAL - 2025-10-04 14:32:16 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'sistema_filas.fichas' doesn't exist
+[Method: GET, Route: api/fichas/listar]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `fichas`
+ORDER BY `criado_em` ASC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Api\FichaApi.php(118): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Api\FichaApi->listar()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\FichaApi))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha-um\\public\\index.php')
+CRITICAL - 2025-10-04 14:32:16 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'sistema_filas.fichas' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `fichas`
+ORDER BY `criado_em` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `fichas`
+ORDER BY `criado_em` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `fichas`
+ORDER BY `criado_em` ASC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Api\FichaApi.php(118): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Api\FichaApi->listar()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\FichaApi))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha-um\\public\\index.php')
+CRITICAL - 2025-10-04 14:32:16 --> [Caused by] mysqli_sql_exception: Table 'sistema_filas.fichas' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `fichas`
+ORDER BY `criado_em` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `fichas`
+ORDER BY `criado_em` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `fichas`
+ORDER BY `criado_em` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `fichas`
+ORDER BY `criado_em` ASC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Api\FichaApi.php(118): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Api\FichaApi->listar()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\FichaApi))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha-um\\public\\index.php')
+DEBUG - 2025-10-04 14:47:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:51:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-10-04 14:51:08 --> ErrorException: Undefined array key "role"
+[Method: GET, Route: painel]
+in APPPATH\Controllers\Admin\FichaController.php on line 18.
+ 1 APPPATH\Controllers\Admin\FichaController.php(18): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "role"', 'C:\\wamp64\\www\\ficha-um\\app\\Controllers\\Admin\\FichaController.php', 18)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\FichaController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FichaController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha-um\\public\\index.php')
+DEBUG - 2025-10-04 14:52:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:52:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 14:52:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:00:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:01:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:02:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:05:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:07:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:10:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:10:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:11:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-04 15:12:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

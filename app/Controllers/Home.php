@@ -12,10 +12,17 @@ class Home extends BaseController
             return redirect()->to('/login');
         }
 
-        if ($usuario['is_admin']) {
-            return redirect()->to('/painel');
+        // Redireciona com base no papel do usuário
+        switch ($usuario['role']) {
+            case 'admin':
+                return redirect()->to('/painel');
+            case 'diretor':
+                return redirect()->to('/admin/fichas');
+            case 'medico':
+                return redirect()->to('/medico');
+            case 'usuario':
+            default:
+                return redirect()->to('/users');
         }
-
-        return redirect()->to('/users');
     }
 }

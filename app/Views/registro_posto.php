@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Registrar Posto de Saúde</title>
@@ -8,6 +9,7 @@
     <link rel="shortcut icon" href="<?= base_url('assets/images/logo/favicon.ico') ?>" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body class="login-body">
 
     <div class="login-container">
@@ -40,16 +42,7 @@
                 <label>Estado</label>
                 <input type="text" name="estado" required>
 
-                <label>País</label>
-                <input type="text" name="pais" required value="Brasil">
 
-                <!-- <label>Tipo de unidade</label>
-                <select name="tipo" required>
-                    <option value="">Selecione</option>
-                    <option value="publico">Público</option>
-                    <option value="privado">Privado</option>
-                </select> -->
-                
 
                 <h3>Diretor Responsável</h3>
 
@@ -75,4 +68,5 @@
     </div>
 
 </body>
+
 </html>

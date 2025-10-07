@@ -1,5 +1,4 @@
 <?php
-// Ajustado: Login.php
 
 namespace App\Controllers;
 
@@ -21,20 +20,28 @@ class Login extends BaseController
         $model   = new UsuarioModel();
         $usuario = $model->where('cpf', $cpf)->first();
 
+        // Verifica se o usuário existe e se a senha confere
         if ($usuario && password_verify($senha, $usuario['senha'])) {
-            // Setar somente os dados essenciais na sessão
+            // Define dados essenciais na sessão
             session()->set('usuarioLogado', [
-                'id'        => $usuario['id'],
-                'nome'      => $usuario['nome'],
-                'cpf'       => $usuario['cpf'],     
-                'is_admin'  => $usuario['is_admin'],
-                'posto_id'  => $usuario['posto_id'],
+                'id'       => $usuario['id'],
+                'nome'     => $usuario['nome'],
+                'cpf'      => $usuario['cpf'],
+                'role'     => $usuario['role'],
+                'posto_id' => $usuario['posto_id'],
             ]);
 
-            if ($usuario['is_admin']) {
-                return redirect()->to('/painel');
-            } else {
-                return redirect()->to('/users');
+            // Redireciona conforme o papel (role)
+            switch ($usuario['role']) {
+                case 'admin':
+                    return redirect()->to('/painel'); // painel global
+                case 'diretor':
+                    return redirect()->to('/admin/fichas'); // painel do posto
+                case 'medico':
+                    return redirect()->to('/medico'); // futuro painel médico
+                case 'usuario':
+                default:
+                    return redirect()->to('/users'); // página pública
             }
         }
 

@@ -17,10 +17,11 @@ class UsuarioModel extends Model
         'endereco',
         'email',
         'senha',
-        'is_admin',
-        'posto_id',   
-        'criado_em'
+        'role',
+        'posto_id',
+        'criado_em',
     ];
+
 
     protected $useTimestamps = false;
 }

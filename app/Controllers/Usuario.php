@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Controllers\BaseController;
 use App\Models\FichaModel;
 
@@ -10,20 +11,21 @@ class Usuario extends BaseController
     {
         $usuario = session()->get('usuarioLogado');
 
-        if (!$usuario || $usuario['is_admin']) {
+        // 🔹 Redireciona se não estiver logado ou se não for paciente
+        if (!$usuario || $usuario['role'] !== 'usuario') {
             return redirect()->to('/login');
         }
 
         $model = new FichaModel();
 
-        // Buscar a ficha mais recente do usuário logado (pelo CPF)
+        // 🔹 Busca a ficha mais recente do usuário logado (pelo CPF)
         $ficha = $model->where('cpf', $usuario['cpf'])
-                    ->orderBy('criado_em', 'DESC')
-                    ->first();
+            ->orderBy('criado_em', 'DESC')
+            ->first();
 
         $data = [
-            'ficha' => null,
-            'posicao' => null,
+            'ficha'    => null,
+            'posicao'  => null,
             'mensagem' => '',
         ];
 
@@ -34,8 +36,8 @@ class Usuario extends BaseController
 
             if ($ficha['status'] === 'aguardando') {
                 $aguardando = $model->where('status', 'aguardando')
-                                    ->orderBy('criado_em', 'ASC')
-                                    ->findAll();
+                    ->orderBy('criado_em', 'ASC')
+                    ->findAll();
 
                 foreach ($aguardando as $index => $f) {
                     if ($f['id'] == $ficha['id']) {
@@ -62,14 +64,17 @@ class Usuario extends BaseController
 
         if ($ficha['status'] !== 'aguardando') {
             return view('users/consulta', [
-                'ficha' => $ficha,
+                'ficha'    => $ficha,
                 'mensagem' => 'Sua ficha já está em atendimento ou foi atendida.',
-                'posicao' => null,
+                'posicao'  => null,
             ]);
         }
 
-        // calcular posição
-        $todas = $model->where('status', 'aguardando')->orderBy('criado_em', 'ASC')->findAll();
+        // 🔹 Calcular posição na fila
+        $todas = $model->where('status', 'aguardando')
+            ->orderBy('criado_em', 'ASC')
+            ->findAll();
+
         $posicao = 1;
         foreach ($todas as $f) {
             if ($f['id'] == $ficha['id']) break;
@@ -77,7 +82,7 @@ class Usuario extends BaseController
         }
 
         return view('users/consulta', [
-            'ficha' => $ficha,
+            'ficha'   => $ficha,
             'posicao' => $posicao,
         ]);
     }

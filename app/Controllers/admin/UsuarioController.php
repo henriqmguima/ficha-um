@@ -26,9 +26,15 @@ class UsuarioController extends BaseController
             ]);
         }
 
+        // Gera senha aleatória
         $senhaPura = random_string('alnum', 8);
         $senhaHash = password_hash($senhaPura, PASSWORD_DEFAULT);
 
+        // Determina o papel (role) do novo usuário
+        // Valor vem do form, ex: 'medico', 'usuario', etc.
+        $role = $this->request->getPost('role') ?? 'usuario';
+
+        // Salva o novo usuário vinculado ao mesmo posto
         $salvo = $model->insert([
             'cpf'        => $this->request->getPost('cpf'),
             'nome'       => $this->request->getPost('nome'),
@@ -36,7 +42,7 @@ class UsuarioController extends BaseController
             'endereco'   => $this->request->getPost('endereco'),
             'email'      => $this->request->getPost('email'),
             'senha'      => $senhaHash,
-            'is_admin'   => $this->request->getPost('is_admin') ? 1 : 0,
+            'role'       => $role,
             'posto_id'   => $usuarioLogado['posto_id'],
             'criado_em'  => date('Y-m-d H:i:s'),
         ]);
@@ -50,9 +56,8 @@ class UsuarioController extends BaseController
 
         return $this->response->setJSON([
             'success' => true,
-            'senha' => $senhaPura
+            'senha'   => $senhaPura,
+            'message' => 'Usuário criado com sucesso!'
         ]);
     }
-
-
 }

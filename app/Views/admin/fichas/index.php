@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,24 +18,15 @@
     <script defer src="<?= base_url('assets/js/admin/fila_admin.js') ?>"></script>
 
 </head>
+
 <body class="admin-body">
     <button class="menu-toggle" onclick="toggleSidebar()">
         <i class="fa fa-bars"></i>
     </button>
 
     <div class="layout">
-        <!-- MENU LATERAL -->
-        <aside class="sidebar">
-            <div class="logo">
-                <img src="<?= base_url('assets/images/logo/logo_ficha_um.png') ?>" alt="Ficha Um">
-            </div>
-            <nav class="menu">
-                <a href="<?= site_url('admin/fichas') ?>" class="active"><i class="fa fa-list"></i> Fichas</a>
-                <a href="#" onclick="abrirModal()"><i class="fa fa-plus"></i> Nova Ficha</a>
-                <a href="#" onclick="abrirModal_Usuario()"><i class="fa fa-user-plus"></i> Novo Usuário</a>
-                <a href="<?= site_url('logout') ?>"><i class="fa fa-sign-out-alt"></i> Sair</a>
-            </nav>
-        </aside>
+        <?= view('layouts/aside') ?>
+
 
         <!-- CONTEÚDO PRINCIPAL -->
         <main class="main-content">
@@ -52,7 +44,9 @@
             <div class="tabela-wrapper">
                 <table id="tabela-fichas">
                     <tbody id="tabela-fichas">
-                        <tr><td colspan="8">Carregando fichas...</td></tr>
+                        <tr>
+                            <td colspan="8">Carregando fichas...</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -64,4 +58,5 @@
     <?= view('admin/fichas/modal_create', ['usuarios' => $usuarios]) ?>
     <?= view('admin/modal_create_usuario') ?>
 </body>
+
 </html>

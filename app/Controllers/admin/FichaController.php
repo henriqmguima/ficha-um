@@ -10,23 +10,38 @@ class FichaController extends BaseController
 {
     public function index()
     {
-        $usuario = session()->get('usuarioLogado');
+        $usuarioLogado = session()->get('usuarioLogado');
 
-        if (!is_array($usuario) || !isset($usuario['is_admin']) || !$usuario['is_admin']) {
-            return redirect()->to('/users'); // redireciona usuário comum para a tela pública
+        // 🔹 Verifica se está logado e se é um papel autorizado
+        if (
+            !$usuarioLogado ||
+            !in_array($usuarioLogado['role'], ['admin', 'diretor', 'medico'])
+        ) {
+            return redirect()->to('/users');
         }
 
-        $model = new FichaModel();
+        $postoId = $usuarioLogado['posto_id'] ?? null;
+        $role = $usuarioLogado['role'];
 
+        $fichaModel = new FichaModel();
+        $usuarioModel = new UsuarioModel();
+
+        // 🔹 Filtro de status (aguardando, em_atendimento, atendido)
         $statusFiltro = $this->request->getGet('status');
-        $builder = $model->orderBy('criado_em', 'ASC');
+        $builder = $fichaModel->orderBy('criado_em', 'ASC');
 
         if ($statusFiltro && in_array($statusFiltro, ['aguardando', 'em_atendimento', 'atendido'])) {
             $builder->where('status', $statusFiltro);
         }
 
+        // 🔹 Admin vê tudo; diretor e médico só do próprio posto
+        if ($role !== 'admin' && $postoId) {
+            $builder->where('posto_id', $postoId);
+        }
+
         $fichas = $builder->findAll();
 
+        // 🔹 Calcula posição e tempo de espera
         $posicao = 1;
         foreach ($fichas as &$ficha) {
             if ($ficha['status'] === 'aguardando') {
@@ -44,56 +59,93 @@ class FichaController extends BaseController
             $ficha['data_formatada'] = date('d/m/Y H:i', strtotime($ficha['criado_em']));
         }
 
-
-
-
-        $usuarioModel = new \App\Models\UsuarioModel();
-        $usuarios = $usuarioModel->where('is_admin', 0)->findAll();
+        // 🔹 Carrega apenas usuários comuns do mesmo posto
+        $usuariosQuery = $usuarioModel->where('role', 'usuario');
+        if ($role !== 'admin' && $postoId) {
+            $usuariosQuery->where('posto_id', $postoId);
+        }
+        $usuarios = $usuariosQuery->findAll();
 
         return view('admin/fichas/index', [
-            'fichas' => $fichas,
-            'statusAtual' => $statusFiltro ?? 'todos',
-            'usuarios' => $usuarios, // necessário para o modal
+            'fichas'       => $fichas,
+            'statusAtual'  => $statusFiltro ?? 'todos',
+            'usuarios'     => $usuarios,
         ]);
     }
 
     public function create()
     {
+        $usuarioLogado = session()->get('usuarioLogado');
+        $postoId = $usuarioLogado['posto_id'] ?? null;
+        $role = $usuarioLogado['role'] ?? null;
+
+        if (!$usuarioLogado || !in_array($role, ['admin', 'diretor'])) {
+            return redirect()->to('/users');
+        }
+
         $usuarioModel = new UsuarioModel();
-        $usuarios = $usuarioModel->where('is_admin', 0)->findAll(); // apenas usuários comuns
+
+        // 🔹 Apenas usuários comuns do mesmo posto (ou todos se admin)
+        $usuariosQuery = $usuarioModel->where('role', 'usuario');
+        if ($role !== 'admin' && $postoId) {
+            $usuariosQuery->where('posto_id', $postoId);
+        }
+        $usuarios = $usuariosQuery->findAll();
 
         return view('admin/fichas/create', ['usuarios' => $usuarios]);
     }
+
     public function store()
     {
-        $usuarioModel = new \App\Models\UsuarioModel();
-        $cpf = $this->request->getPost('cpf');
-        $paciente = $usuarioModel->where('cpf', $cpf)->first();
+        $usuarioLogado = session()->get('usuarioLogado');
+        $postoId = $usuarioLogado['posto_id'] ?? null;
+        $role = $usuarioLogado['role'] ?? null;
 
-        if (!$paciente) {
-            return redirect()->back()->with('error', 'Paciente não encontrado.');
+        if (!$usuarioLogado || !in_array($role, ['admin', 'diretor'])) {
+            return redirect()->to('/users');
         }
 
-        $model = new FichaModel();
+        $usuarioModel = new UsuarioModel();
+        $cpf = $this->request->getPost('cpf');
 
-        $model->save([
+        // 🔹 Garante que só busca pacientes do mesmo posto (exceto admin)
+        $pacienteQuery = $usuarioModel->where('cpf', $cpf)->where('role', 'usuario');
+        if ($role !== 'admin' && $postoId) {
+            $pacienteQuery->where('posto_id', $postoId);
+        }
+        $paciente = $pacienteQuery->first();
+
+        if (!$paciente) {
+            return redirect()->back()->with('error', 'Paciente não encontrado neste posto.');
+        }
+
+        $fichaModel = new FichaModel();
+
+        $fichaModel->save([
             'usuario_id'        => $paciente['id'],
             'nome_paciente'     => $paciente['nome'],
             'cpf'               => $paciente['cpf'],
             'tipo_atendimento'  => $this->request->getPost('tipo_atendimento'),
             'status'            => 'aguardando',
+            'posto_id'          => $postoId,
             'criado_em'         => date('Y-m-d H:i:s'),
         ]);
 
         return redirect()->to(site_url('admin/fichas'));
     }
 
-
-
     public function updateStatus($id = null, $novoStatus = null)
     {
-        $model = new FichaModel();
-        $ficha = $model->find($id);
+        $usuarioLogado = session()->get('usuarioLogado');
+        $role = $usuarioLogado['role'] ?? null;
+
+        // 🔹 Apenas médico, diretor ou admin podem mudar status
+        if (!$usuarioLogado || !in_array($role, ['admin', 'diretor', 'medico'])) {
+            return redirect()->to('/users');
+        }
+
+        $fichaModel = new FichaModel();
+        $ficha = $fichaModel->find($id);
 
         if ($ficha && in_array($novoStatus, ['aguardando', 'em_atendimento', 'atendido'])) {
             $dados = ['status' => $novoStatus];
@@ -106,15 +158,24 @@ class FichaController extends BaseController
                 $dados['fim_atendimento'] = date('Y-m-d H:i:s');
             }
 
-            $model->update($id, $dados);
+            $fichaModel->update($id, $dados);
         }
 
         return redirect()->to(site_url('admin/fichas'));
     }
+
     public function delete($id = null)
     {
-        $model = new FichaModel();
-        $model->delete($id);
+        $usuarioLogado = session()->get('usuarioLogado');
+        $role = $usuarioLogado['role'] ?? null;
+
+        // 🔹 Apenas diretor ou admin podem excluir fichas
+        if (!$usuarioLogado || !in_array($role, ['admin', 'diretor'])) {
+            return redirect()->to('/users');
+        }
+
+        $fichaModel = new FichaModel();
+        $fichaModel->delete($id);
 
         return redirect()->to(site_url('admin/fichas'));
     }
