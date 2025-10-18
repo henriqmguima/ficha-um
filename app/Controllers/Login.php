@@ -33,10 +33,8 @@ class Login extends BaseController
 
             // Redireciona conforme o papel (role)
             switch ($usuario['role']) {
-                case 'admin':
+                case 'admin' || 'diretor':
                     return redirect()->to('/painel'); // painel global
-                case 'diretor':
-                    return redirect()->to('/admin/fichas'); // painel do posto
                 case 'medico':
                     return redirect()->to('/medico'); // futuro painel médico
                 case 'usuario':

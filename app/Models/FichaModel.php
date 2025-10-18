@@ -8,9 +8,7 @@ class FichaModel extends Model
 {
     protected $table      = 'fichas';
     protected $primaryKey = 'id';
-
     protected $useAutoIncrement = true;
-
 
     protected $allowedFields = [
         'usuario_id',
@@ -19,17 +17,19 @@ class FichaModel extends Model
         'tipo_atendimento',
         'status',
         'posto_id',
+        'medico_id',
+        'autenticada',
+        'sinais_vitais',
+        'sintomas',
+        'prioridade_manchester',
         'criado_em',
         'inicio_atendimento',
         'fim_atendimento',
     ];
 
-
     protected $useTimestamps = true;
     protected $createdField  = 'criado_em';
-    protected $updatedField  = ''; // sem updated por enquanto
-
-    // Formato dos dados retornados
+    protected $updatedField  = '';
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 }

@@ -24,6 +24,12 @@ $routes->get('users', 'Usuario::index');
 // Painel principal do administrador (diretor ou admin)
 $routes->get('painel', 'Admin\FichaController::index');
 
+// Painel do médico
+$routes->get('/medico', 'MedicoController::index');
+$routes->get('/medico/assumir/(:num)', 'MedicoController::assumirFicha/$1');
+$routes->get('/medico/finalizar/(:num)', 'MedicoController::finalizarFicha/$1');
+$routes->get('/medico/ver/(:num)', 'MedicoController::verFicha/$1');
+
 // Rotas de API
 $routes->group('api', function ($routes) {
     $routes->post('fichas', 'Api\FichaApi::create');
