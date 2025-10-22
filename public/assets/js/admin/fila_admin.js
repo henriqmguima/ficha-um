@@ -13,7 +13,7 @@ function atualizarTempos() {
 }
 
 setInterval(atualizarTempos, 100000);
-atualizarTempos(); 
+atualizarTempos();
 
 
 async function atualizarFilaAdmin() {
@@ -28,8 +28,8 @@ async function atualizarFilaAdmin() {
             tbody.innerHTML = '<tr><td colspan="8">Nenhuma ficha cadastrada.</td></tr>';
             return;
         }
-            const thead = document.createElement('thead');
-            thead.innerHTML = `
+        const thead = document.createElement('thead');
+        thead.innerHTML = `
                 <tr>
                     <th>ID</th>
                     <th>Paciente</th>
@@ -51,14 +51,14 @@ async function atualizarFilaAdmin() {
                 : '—';
 
             const acoes = ficha.status === 'aguardando'
-                ? `<a href="/admin/fichas/status/${ficha.id}/em_atendimento" title="Atender">
-                        <i class="fa fa-stethoscope"></i>
-                    </a>`
-                : ficha.status === 'em_atendimento'
-                    ? `<a href="/admin/fichas/status/${ficha.id}/atendido" title="Finalizar">
-                            <i class="fa fa-check"></i>
-                        </a>`
-                    : '✔';
+                ? `<a href="/admin/fichas/avaliar/${ficha.id}" title="Realizar Triagem">
+         <i class="fa fa-notes-medical"></i>
+       </a>`
+                : ficha.status === 'acolhido'
+                    ? '<span class="badge bg-info">Em Triagem</span>'
+                    : ficha.status === 'chamado'
+                        ? '<span class="badge bg-warning">Chamado pelo médico</span>'
+                        : '<span class="badge bg-success">Atendido</span>';
 
             const excluir = `<a href="/admin/fichas/delete/${ficha.id}" onclick="return confirm('Tem certeza que deseja excluir?')" title="Excluir">
                                 <i class="fa fa-trash"></i>

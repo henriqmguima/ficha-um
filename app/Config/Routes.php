@@ -29,6 +29,7 @@ $routes->get('/medico', 'MedicoController::index');
 $routes->get('/medico/assumir/(:num)', 'MedicoController::assumirFicha/$1');
 $routes->get('/medico/finalizar/(:num)', 'MedicoController::finalizarFicha/$1');
 $routes->get('/medico/ver/(:num)', 'MedicoController::verFicha/$1');
+$routes->get('medico/api/fichas', 'MedicoController::apiFichas');
 
 // Rotas de API
 $routes->group('api', function ($routes) {
@@ -45,6 +46,8 @@ $routes->group('admin', ['filter' => 'adminauth'], function ($routes) {
     $routes->post('fichas/store', 'Admin\FichaController::store');
     $routes->get('fichas/status/(:num)/(:segment)', 'Admin\FichaController::updateStatus/$1/$2');
     $routes->get('fichas/delete/(:num)', 'Admin\FichaController::delete/$1');
+    $routes->get('fichas/avaliar/(:num)', 'Admin\FichaController::avaliar/$1');
+    $routes->post('fichas/salvarAvaliacao/(:num)', 'Admin\FichaController::salvarAvaliacao/$1');
 
     // Usuários
     $routes->get('usuarios/create', 'Admin\UsuarioController::create');

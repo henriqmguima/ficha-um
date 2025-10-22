@@ -1,0 +1,190 @@
+/* =======================
+   AVALIAÇÃO DE TRIAGEM
+   ======================= */
+
+body.admin-body {
+    background-color: #f5f7fa;
+    font-family: "Inter", Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px 40px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-left: 4px solid #2563eb;
+    padding-left: 10px;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #2563eb;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* ========== Dados do Paciente ========== */
+.ficha-info {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.ficha-info p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+}
+
+.ficha-info strong {
+    color: #1f2937;
+}
+
+/* ========== Formulário de Triagem ========== */
+.form-avaliacao {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-avaliacao textarea,
+.form-avaliacao select {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    background-color: #fff;
+    transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-avaliacao textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    outline: none;
+}
+
+/* ========== Protocolo de Manchester ========== */
+.protocolo-manchester {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.radio-color {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: #111;
+    font-weight: 500;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.radio-color input {
+    transform: scale(1.3);
+}
+
+.radio-color:hover {
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Cores do Protocolo */
+.radio-color.vermelho {
+    background-color: #fee2e2;
+    border-left: 6px solid #dc2626;
+}
+
+.radio-color.laranja {
+    background-color: #ffedd5;
+    border-left: 6px solid #f97316;
+}
+
+.radio-color.amarelo {
+    background-color: #fef9c3;
+    border-left: 6px solid #facc15;
+}
+
+.radio-color.verde {
+    background-color: #dcfce7;
+    border-left: 6px solid #16a34a;
+}
+
+.radio-color.azul {
+    background-color: #dbeafe;
+    border-left: 6px solid #2563eb;
+}
+
+/* ========== Botões ========== */
+.btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-success {
+    background-color: #16a34a;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #15803d;
+}
+
+.btn-secondary {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+.btn-secondary:hover {
+    background-color: #d1d5db;
+}
+
+/* ========== Responsividade ========== */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 20px;
+    }
+
+    .radio-color {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

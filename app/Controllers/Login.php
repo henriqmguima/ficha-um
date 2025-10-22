@@ -32,14 +32,21 @@ class Login extends BaseController
             ]);
 
             // Redireciona conforme o papel (role)
+            // Redireciona conforme o papel (role)
             switch ($usuario['role']) {
-                case 'admin' || 'diretor':
-                    return redirect()->to('/painel'); // painel global
+                case 'admin':
+                case 'diretor':
+                    return redirect()->to('/painel'); // painel administrativo
+                    break;
+
                 case 'medico':
-                    return redirect()->to('/medico'); // futuro painel médico
+                    return redirect()->to('/medico'); // painel do médico
+                    break;
+
                 case 'usuario':
                 default:
                     return redirect()->to('/users'); // página pública
+                    break;
             }
         }
 

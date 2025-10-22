@@ -1,0 +1,173 @@
+body.admin-body {
+    background-color: #f4f6fa;
+    font-family: 'Inter', Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* ======== Layout principal ======== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #1e3a8a;
+    margin-bottom: 10px;
+}
+
+h4 {
+    color: #2563eb;
+    border-left: 4px solid #2563eb;
+    padding-left: 10px;
+    margin-top: 40px;
+}
+
+/* ======== Cards de fichas ======== */
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 16px 18px;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* ======== Cores do Protocolo Manchester ======== */
+.bg-danger {
+    background-color: #dc2626 !important;
+    /* vermelho */
+}
+
+.bg-warning {
+    background-color: #f97316 !important;
+    /* laranja */
+}
+
+.bg-warning-subtle {
+    background-color: #fde68a !important;
+    /* amarelo */
+}
+
+.bg-success {
+    background-color: #16a34a !important;
+    /* verde */
+}
+
+.bg-primary {
+    background-color: #2563eb !important;
+    /* azul */
+}
+
+.bg-light {
+    background-color: #e5e7eb !important;
+}
+
+/* Texto dentro dos cards */
+.text-white {
+    color: #fff !important;
+}
+
+.text-dark {
+    color: #1f2937 !important;
+}
+
+/* ======== Botões ======== */
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Botões específicos */
+.btn-light {
+    background-color: #fff;
+    color: #2563eb;
+    border: 1px solid #d1d5db;
+}
+
+.btn-light:hover {
+    background-color: #f3f4f6;
+}
+
+.btn-outline-light {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-success {
+    background-color: #16a34a;
+    color: #fff;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #15803d;
+}
+
+.btn-outline-secondary {
+    border: 1px solid #6b7280;
+    color: #374151;
+    background-color: #fff;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f9fafb;
+}
+
+/* ======== Layout responsivo ======== */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.col-md-4 {
+    flex: 1 1 calc(33.333% - 20px);
+}
+
+@media (max-width: 992px) {
+    .col-md-4 {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 600px) {
+    .col-md-4 {
+        flex: 1 1 100%;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+}

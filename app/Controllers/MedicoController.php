@@ -29,22 +29,20 @@ class MedicoController extends BaseController
             return view('medico/erro', ['mensagem' => 'Perfil de médico não encontrado.']);
         }
 
-        // 🔹 Fichas pendentes do mesmo posto, já triadas e sem médico
+        // Fichas atribuídas a este médico e prontas (acolhidas)
         $fichasDisponiveis = $fichaModel
-            ->where('posto_id', $medico['posto_id'])
-            ->where('status', 'aguardando')
-            ->where('autenticada', 1)
-            ->where('prioridade_manchester IS NOT NULL', null, false)
-            ->where('medico_id IS NULL', null, false)
+            ->where('medico_id', $medico['id'])
+            ->where('status', 'acolhido')
             ->orderBy('criado_em', 'ASC')
             ->findAll();
 
-        // 🔹 Fichas que o médico já assumiu
+        // Fichas em atendimento por este médico
         $fichasEmAtendimento = $fichaModel
             ->where('medico_id', $medico['id'])
-            ->whereIn('status', ['em_atendimento', 'aguardando'])
-            ->orderBy('prioridade_manchester', 'ASC')
+            ->where('status', 'em_atendimento')
+            ->orderBy('inicio_atendimento', 'ASC')
             ->findAll();
+
 
         return view('medico/index', [
             'medico' => $medico,
@@ -84,6 +82,31 @@ class MedicoController extends BaseController
         ]);
 
         return redirect()->to('/medico');
+    }
+    public function apiFichas()
+    {
+        $usuario = session()->get('usuarioLogado');
+
+        if (!$usuario || $usuario['role'] !== 'medico') {
+            return $this->response->setStatusCode(403)->setJSON(['error' => 'Acesso negado']);
+        }
+
+        $medicoModel = new MedicoModel();
+        $fichaModel = new FichaModel();
+
+        $medico = $medicoModel->where('usuario_id', $usuario['id'])->first();
+        if (!$medico) {
+            return $this->response->setJSON(['fichas' => []]);
+        }
+
+        // apenas fichas atribuídas a este médico e prontas
+        $fichas = $fichaModel
+            ->where('medico_id', $medico['id'])
+            ->where('status', 'acolhido')
+            ->orderBy('criado_em', 'ASC')
+            ->findAll();
+
+        return $this->response->setJSON(['fichas' => $fichas]);
     }
 
     public function finalizarFicha($id)

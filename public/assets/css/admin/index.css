@@ -9,6 +9,61 @@ body {
     min-height: 100vh;
 }
 
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.status-aguardando {
+    background-color: #f59e0b;
+    /* amarelo */
+}
+
+.status-acolhido {
+    background-color: #3b82f6;
+    /* azul */
+}
+
+.status-chamado {
+    background-color: #9333ea;
+    /* roxo */
+}
+
+.status-atendido {
+    background-color: #16a34a;
+    /* verde */
+}
+
+.tabela-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.tabela-wrapper th,
+.tabela-wrapper td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.acoes a {
+    margin: 0 4px;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.acoes a i {
+    transition: transform 0.2s ease;
+}
+
+.acoes a:hover i {
+    transform: scale(1.1);
+}
 
 
 .main-content {
@@ -61,6 +116,7 @@ thead {
     border: 1px solid var(--azul-medio);
     padding: auto 12px;
 }
+
 
 #tabela-fichas th,
 #tabela-fichas td {
