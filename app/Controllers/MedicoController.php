@@ -12,7 +12,6 @@ class MedicoController extends BaseController
     {
         $usuario = session()->get('usuarioLogado');
 
-        // 🔹 Apenas médicos podem acessar
         if (!$usuario || $usuario['role'] !== 'medico') {
             return redirect()->to('/login');
         }
@@ -29,10 +28,14 @@ class MedicoController extends BaseController
             return view('medico/erro', ['mensagem' => 'Perfil de médico não encontrado.']);
         }
 
+        // 🔹 Busca o nome do médico (da tabela usuários)
+        $nomeMedico = $usuario['nome'] ?? 'Médico';
+
         // Fichas atribuídas a este médico e prontas (acolhidas)
         $fichasDisponiveis = $fichaModel
-            ->where('medico_id', $medico['id'])
+            ->where('posto_id', $medico['posto_id'])
             ->where('status', 'acolhido')
+            ->orderBy('prioridade_manchester', 'ASC')
             ->orderBy('criado_em', 'ASC')
             ->findAll();
 
@@ -43,9 +46,9 @@ class MedicoController extends BaseController
             ->orderBy('inicio_atendimento', 'ASC')
             ->findAll();
 
-
         return view('medico/index', [
             'medico' => $medico,
+            'nomeMedico' => $nomeMedico,
             'fichasDisponiveis' => $fichasDisponiveis,
             'fichasEmAtendimento' => $fichasEmAtendimento,
         ]);

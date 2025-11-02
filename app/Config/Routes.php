@@ -28,14 +28,16 @@ $routes->get('painel', 'Admin\FichaController::index');
 $routes->get('/medico', 'MedicoController::index');
 $routes->get('/medico/assumir/(:num)', 'MedicoController::assumirFicha/$1');
 $routes->get('/medico/finalizar/(:num)', 'MedicoController::finalizarFicha/$1');
+$routes->get('medico/apiFichas', 'MedicoController::apiFichas');
+
 $routes->get('/medico/ver/(:num)', 'MedicoController::verFicha/$1');
-$routes->get('medico/api/fichas', 'MedicoController::apiFichas');
 
 // Rotas de API
 $routes->group('api', function ($routes) {
     $routes->post('fichas', 'Api\FichaApi::create');
     $routes->get('fichas/minha-ficha', 'Api\FichaApi::minhaFicha');
     $routes->get('fichas/listar', 'Api\FichaApi::listar');
+    $routes->get('admin/fichas/api-listar', 'Admin\FichaController::apiListar');
 });
 
 // Área protegida para administradores de postos

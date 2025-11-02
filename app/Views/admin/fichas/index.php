@@ -19,9 +19,10 @@
     <script defer src="<?= base_url('assets/js/admin/modal_create_usuario.js') ?>"></script>
     <script defer src="<?= base_url('assets/js/admin/modal_create_ficha.js') ?>"></script>
     <script>
-        const API_LISTAR_FICHAS = "<?= site_url('api/fichas/listar') ?>";
+        const API_LISTAR_FICHAS = "<?= site_url('admin/fichas/api-listar') ?>";
     </script>
-    <script defer src="<?= base_url('assets/js/admin/fila_admin.js') ?>"></script>
+    <script src="<?= base_url('js/fila_admin.js') ?>"></script>
+
 
 </head>
 

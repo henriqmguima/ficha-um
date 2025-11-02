@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/admin/index.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="shortcut icon" href="<?php echo base_url('assets/images/logo/favicon.ico'); ?>" type="image/x-icon">
-    <script defer src="<?= base_url('assets/js/medicos/medico_fila.js') ?>"></script>
 
 
 </head>
 
-<body class="admin-body" data-api-fichas="<?= site_url('medico/api/fichas') ?>">
+<body data-api-fichas="<?= site_url('medico/apiFichas') ?>"
+    data-assumir-base="<?= site_url('medico/assumir') ?>"
+    data-ver-base="<?= site_url('medico/ver') ?>"
+    class="admin-body" data-api-fichas="<?= site_url('medico/api/fichas') ?>">
     <button class="menu-toggle" onclick="toggleSidebar()">
         <i class="fa fa-bars"></i>
     </button>
@@ -23,14 +25,13 @@
     <div class="layout">
         <?= view('layouts/aside') ?>
         <div class="container mt-4">
-            <h2>Bem-vindo, Dr(a). <?= esc($medico['id']) ?></h2>
+            <h2>Bem-vindo, Dr(a). <?= esc($nomeMedico) ?></h2>
             <p><strong>Atendimentos de hoje:</strong> <?= esc($medico['atendimentos_hoje']) ?>/<?= esc($medico['max_atendimentos']) ?></p>
 
             <h4 class="mt-5">📋 Fichas disponíveis para atendimento</h4>
-            <div class="row mt-3">
-                <?php if (empty($fichasDisponiveis)): ?>
-                    <p>Nenhuma ficha disponível no momento.</p>
-                <?php else: ?>
+            <!-- ESTE container será preenchido por medico.js -->
+            <div id="fichas-disponiveis" class="row mt-3">
+                <?php if (!empty($fichasDisponiveis)): ?>
                     <?php foreach ($fichasDisponiveis as $ficha): ?>
                         <?php
                         $cores = [
@@ -46,18 +47,20 @@
                             <div class="card <?= $classe ?> shadow-sm">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= esc($ficha['nome_paciente']) ?></h5>
-                                    <p><strong>Sintomas:</strong> <?= esc($ficha['sintomas']) ?></p>
+                                    <p><strong>Sintomas:</strong> <?= esc($ficha['sintomas'] ?? '—') ?></p>
                                     <a href="<?= site_url('medico/assumir/' . $ficha['id']) ?>" class="btn btn-light btn-sm">👩‍⚕️ Assumir</a>
                                     <a href="<?= site_url('medico/ver/' . $ficha['id']) ?>" class="btn btn-outline-light btn-sm">Detalhes</a>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Nenhuma ficha disponível no momento.</p>
                 <?php endif; ?>
             </div>
 
             <h4 class="mt-5">🩺 Fichas em atendimento</h4>
-            <div id="fichas-disponiveis" class="row mt-3">
+            <div id="fichas-em-atendimento" class="row mt-3">
                 <?php if (empty($fichasEmAtendimento)): ?>
                     <p>Você não possui atendimentos em andamento.</p>
                 <?php else: ?>
@@ -66,7 +69,7 @@
                             <div class="card border-success shadow-sm">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= esc($ficha['nome_paciente']) ?></h5>
-                                    <p><strong>Sintomas:</strong> <?= esc($ficha['sintomas']) ?></p>
+                                    <p><strong>Sintomas:</strong> <?= esc($ficha['sintomas'] ?? '—') ?></p>
                                     <a href="<?= site_url('medico/finalizar/' . $ficha['id']) ?>" class="btn btn-success btn-sm">✅ Finalizar</a>
                                     <a href="<?= site_url('medico/ver/' . $ficha['id']) ?>" class="btn btn-outline-secondary btn-sm">🔍 Ver</a>
                                 </div>
@@ -76,6 +79,9 @@
                 <?php endif; ?>
             </div>
         </div>
+
+        <script src="<?= base_url('assets/js/medico.js') ?>"></script>
+
     </div>
 
 

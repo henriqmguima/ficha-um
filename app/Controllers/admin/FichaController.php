@@ -183,4 +183,41 @@ class FichaController extends BaseController
         $fichaModel->update($id, $dados);
         return redirect()->back()->with('success', 'Status atualizado.');
     }
+    // dentro de Admin\FichaController
+    public function apiListar()
+    {
+        $usuarioLogado = session()->get('usuarioLogado');
+        if (!$usuarioLogado || !in_array($usuarioLogado['role'], ['admin', 'diretor'])) {
+            return $this->response->setStatusCode(403)->setJSON(['error' => 'Acesso negado']);
+        }
+
+        $postoId = $usuarioLogado['posto_id'] ?? null;
+        $fichaModel = new FichaModel();
+
+        $fichas = $fichaModel
+            ->where('posto_id', $postoId)
+            ->orderBy('criado_em', 'ASC')
+            ->findAll();
+
+        // calcula posicao/tempo similar ao index
+        $posicao = 1;
+        foreach ($fichas as &$ficha) {
+            if ($ficha['status'] === 'aguardando') {
+                $ficha['posicao'] = $posicao++;
+                $criado = new \DateTime($ficha['criado_em']);
+                $agora = new \DateTime('now');
+                $intervalo = $criado->diff($agora);
+                $ficha['tempo_espera'] = $intervalo->format('%H:%I:%S');
+                $ficha['inicio_timestamp'] = $criado->getTimestamp();
+            } else {
+                $ficha['posicao'] = null;
+                $ficha['tempo_espera'] = null;
+                $ficha['inicio_timestamp'] = null;
+            }
+            $ficha['data_formatada'] = date('d/m/Y H:i', strtotime($ficha['criado_em']));
+        }
+        unset($ficha);
+
+        return $this->response->setJSON($fichas);
+    }
 }

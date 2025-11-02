@@ -88,6 +88,11 @@ h4 {
     color: #1f2937 !important;
 }
 
+.btn-outline-light {
+    background-color: #fff !important;
+    color: #2563eb !important;
+}
+
 /* ======== Botões ======== */
 .btn {
     display: inline-block;
