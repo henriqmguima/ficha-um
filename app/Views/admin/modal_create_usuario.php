@@ -25,7 +25,6 @@
                 <select name="role" id="role" class="form-control" required>
                     <option value="usuario">Usuário (paciente)</option>
                     <option value="medico">Médico</option>
-                    <option value="diretor">Diretor</option>
                     <option value="admin">Administrador</option>
                 </select>
             </div>

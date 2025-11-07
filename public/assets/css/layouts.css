@@ -12,6 +12,12 @@
     flex-shrink: 0;
 }
 
+.menu a.active {
+    background-color: #2563eb;
+    color: #fff;
+    font-weight: bold;
+}
+
 .sidebar .logo img {
     width: 100%;
     max-height: 80px;
@@ -47,7 +53,7 @@
         position: fixed;
         top: 15px;
         left: 15px;
-        background-color: #2A418D;
+        background-color: #0cc0df;
         color: white;
         border: none;
         padding: 10px 12px;

@@ -19,19 +19,26 @@ class MedicoController extends BaseController
         $fichaModel = new FichaModel();
         $medicoModel = new MedicoModel();
 
-        // 🔹 Busca o registro do médico vinculado a este usuário
-        $medico = $medicoModel
-            ->where('usuario_id', $usuario['id'])
-            ->first();
+        $medico = $medicoModel->where('usuario_id', $usuario['id'])->first();
 
         if (!$medico) {
             return view('medico/erro', ['mensagem' => 'Perfil de médico não encontrado.']);
         }
 
-        // 🔹 Busca o nome do médico (da tabela usuários)
         $nomeMedico = $usuario['nome'] ?? 'Médico';
 
-        // Fichas atribuídas a este médico e prontas (acolhidas)
+        // Função auxiliar para calcular tempo de espera
+        $calcularEspera = function ($criadoEm) {
+            $agora = new \DateTime();
+            $inicio = new \DateTime($criadoEm);
+            $diff = $inicio->diff($agora);
+            if ($diff->h > 0) {
+                return $diff->h . 'h ' . $diff->i . 'min';
+            }
+            return $diff->i . ' min';
+        };
+
+        //  Fichas aguardando atendimento
         $fichasDisponiveis = $fichaModel
             ->where('posto_id', $medico['posto_id'])
             ->where('status', 'acolhido')
@@ -39,12 +46,20 @@ class MedicoController extends BaseController
             ->orderBy('criado_em', 'ASC')
             ->findAll();
 
-        // Fichas em atendimento por este médico
+        foreach ($fichasDisponiveis as &$ficha) {
+            $ficha['tempo_espera'] = $calcularEspera($ficha['criado_em']);
+        }
+
+        //  Fichas em atendimento
         $fichasEmAtendimento = $fichaModel
             ->where('medico_id', $medico['id'])
             ->where('status', 'em_atendimento')
             ->orderBy('inicio_atendimento', 'ASC')
             ->findAll();
+
+        foreach ($fichasEmAtendimento as &$ficha) {
+            $ficha['tempo_espera'] = $calcularEspera($ficha['criado_em']);
+        }
 
         return view('medico/index', [
             'medico' => $medico,
@@ -53,6 +68,7 @@ class MedicoController extends BaseController
             'fichasEmAtendimento' => $fichasEmAtendimento,
         ]);
     }
+
 
     public function assumirFicha($id)
     {
@@ -72,14 +88,14 @@ class MedicoController extends BaseController
             return redirect()->back()->with('erro', 'Ficha ou médico não encontrados.');
         }
 
-        // 🔹 Atualiza a ficha com o médico responsável
+        //  Atualiza a ficha com o médico responsável
         $fichaModel->update($id, [
             'medico_id' => $medico['id'],
             'status' => 'em_atendimento',
             'inicio_atendimento' => date('Y-m-d H:i:s'),
         ]);
 
-        // 🔹 Incrementa o contador diário do médico
+        //  Incrementa o contador diário do médico
         $medicoModel->update($medico['id'], [
             'atendimentos_hoje' => $medico['atendimentos_hoje'] + 1,
         ]);
@@ -95,19 +111,29 @@ class MedicoController extends BaseController
         }
 
         $medicoModel = new MedicoModel();
-        $fichaModel = new FichaModel();
+        $fichaModel  = new FichaModel();
 
         $medico = $medicoModel->where('usuario_id', $usuario['id'])->first();
         if (!$medico) {
             return $this->response->setJSON(['fichas' => []]);
         }
 
-        // apenas fichas atribuídas a este médico e prontas
         $fichas = $fichaModel
-            ->where('medico_id', $medico['id'])
+            ->where('posto_id', $medico['posto_id'])
             ->where('status', 'acolhido')
+            ->orderBy('prioridade_manchester', 'ASC')
             ->orderBy('criado_em', 'ASC')
             ->findAll();
+
+        //  adiciona tempo_espera calculado
+        $agora = new \DateTime();
+        foreach ($fichas as &$f) {
+            $inicio = new \DateTime($f['criado_em']);
+            $diff   = $inicio->diff($agora);
+            $f['tempo_espera'] = ($diff->h > 0)
+                ? $diff->h . 'h ' . $diff->i . 'min'
+                : $diff->i . ' min';
+        }
 
         return $this->response->setJSON(['fichas' => $fichas]);
     }

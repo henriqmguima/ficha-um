@@ -60,7 +60,7 @@ class FichaController extends BaseController
     {
         $usuarioLogado = session()->get('usuarioLogado');
 
-        // 🔐 Permite apenas admin ou diretor criarem fichas
+        //  Permite apenas admin ou diretor criarem fichas
         if (!$usuarioLogado || !in_array($usuarioLogado['role'], ['admin', 'diretor'])) {
             return redirect()->to('/users');
         }
@@ -72,7 +72,7 @@ class FichaController extends BaseController
         $cpf = $this->request->getPost('cpf');
         $tipoAtendimento = $this->request->getPost('tipo_atendimento');
 
-        // 🔹 Busca o paciente pelo CPF
+        //  Busca o paciente pelo CPF
         $paciente = $usuarioModel
             ->where('cpf', $cpf)
             ->where('role', 'usuario')
@@ -82,7 +82,7 @@ class FichaController extends BaseController
             return redirect()->back()->with('error', 'Paciente não encontrado.');
         }
 
-        // 🔹 Cria nova ficha
+        //  Cria nova ficha
         $fichaData = [
             'usuario_id'        => $paciente['id'],
             'nome_paciente'     => $paciente['nome'],
@@ -100,7 +100,7 @@ class FichaController extends BaseController
             ->with('success', 'Ficha criada com sucesso e adicionada à fila de triagem!');
     }
 
-    // 🔹 Função de triagem (avaliação)
+    //  Função de triagem (avaliação)
     public function avaliar($id)
     {
         $fichaModel = new FichaModel();
@@ -164,7 +164,7 @@ class FichaController extends BaseController
         // redireciona com flash (não JSON)
         return redirect()->to(site_url('admin/fichas'))->with('success', 'Ficha avaliada e enviada ao médico.');
     }
-    // 🔹 Atualiza status (genérico)
+    //  Atualiza status (genérico)
     public function updateStatus($id, $novoStatus)
     {
         $fichaModel = new FichaModel();
@@ -219,5 +219,28 @@ class FichaController extends BaseController
         unset($ficha);
 
         return $this->response->setJSON($fichas);
+    }
+    public function delete($id)
+    {
+        $usuarioLogado = session()->get('usuarioLogado');
+
+        // 🔐 Apenas administradores ou diretores podem excluir fichas
+        if (!$usuarioLogado || !in_array($usuarioLogado['role'], ['admin', 'diretor'])) {
+            return redirect()->to('/login')->with('error', 'Acesso negado.');
+        }
+
+        $fichaModel = new FichaModel();
+        $ficha = $fichaModel->find($id);
+
+        if (!$ficha) {
+            return redirect()->back()->with('error', 'Ficha não encontrada.');
+        }
+
+        //  Exclui a ficha
+        $fichaModel->delete($id);
+
+        return redirect()
+            ->to(site_url('admin/fichas'))
+            ->with('success', 'Ficha excluída com sucesso.');
     }
 }

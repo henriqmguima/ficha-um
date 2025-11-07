@@ -29,7 +29,6 @@
             <p><strong>Atendimentos de hoje:</strong> <?= esc($medico['atendimentos_hoje']) ?>/<?= esc($medico['max_atendimentos']) ?></p>
 
             <h4 class="mt-5">📋 Fichas disponíveis para atendimento</h4>
-            <!-- ESTE container será preenchido por medico.js -->
             <div id="fichas-disponiveis" class="row mt-3">
                 <?php if (!empty($fichasDisponiveis)): ?>
                     <?php foreach ($fichasDisponiveis as $ficha): ?>
@@ -48,6 +47,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?= esc($ficha['nome_paciente']) ?></h5>
                                     <p><strong>Sintomas:</strong> <?= esc($ficha['sintomas'] ?? '—') ?></p>
+                                    <p><strong>⏱ Tempo de espera:</strong> <?= esc($ficha['tempo_espera'] ?? '—') ?></p>
                                     <a href="<?= site_url('medico/assumir/' . $ficha['id']) ?>" class="btn btn-light btn-sm">👩‍⚕️ Assumir</a>
                                     <a href="<?= site_url('medico/ver/' . $ficha['id']) ?>" class="btn btn-outline-light btn-sm">Detalhes</a>
                                 </div>

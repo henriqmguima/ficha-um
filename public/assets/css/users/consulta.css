@@ -1,88 +1,270 @@
-
+:root {
+    --azul: #2A418D;
+    --azul-claro: #4B66C1;
+    --azul-escuro: #1f2d63;
+    --cinza: #f4f6fb;
+    --branco: #fff;
+    --verde: #16a34a;
+    --laranja: #f59e0b;
+}
 
 body {
-    background-color: var(--cinza-claro);
-    color: var(--azul-medio);
-    min-height: 100vh;
-    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+    background: var(--cinza);
+    color: var(--azul-escuro);
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+}
+
+/* === HEADER === */
+.topbar {
+    background: linear-gradient(90deg, var(--azul) 0%, var(--azul-claro) 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #2A418D;
-    text-align: center;
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
-#conteudo {
-    background-color: var(--branco);
-    padding: 25px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    max-width: 500px;
+.logo-area img {
+    height: 60px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logout-btn {
+    background: #ef4444;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+}
+
+/* === CONTEÚDO PRINCIPAL === */
+.main-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+}
+
+.ficha-section {
+    background: var(--branco);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    max-width: 480px;
     width: 100%;
     text-align: center;
 }
 
-#conteudo h2 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    color: var(--azul-escuro);
+.ficha-card {
+    transition: all 0.3s ease;
 }
 
-#conteudo p {
+.ficha-card h2 {
+    color: var(--azul);
+    margin-bottom: 0.8rem;
+}
+
+.ficha-card p {
+    margin: 0.5rem 0;
+    color: #333;
     font-size: 1rem;
-    margin: 10px 0;
-    color: var(--texto);
 }
 
-/* === LINK DE SAÍDA === */
-a {
-    margin-top: 25px;
-    display: inline-block;
-    color: var(--azul-medio);
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s;
+/* === STATUS === */
+.aguardando {
+    color: var(--laranja);
+    font-weight: 600;
 }
 
-a:hover {
-    color: var(--azul-escuro);
+.em-atendimento {
+    color: var(--azul-claro);
+    font-weight: 600;
 }
 
-#btnCriarFicha{
-    margin-top: 10px;
-    padding: 12px;
-    background: var(--azul-medio);
-    color: var(--branco);
+.finalizado {
+    color: var(--verde);
+    font-weight: 600;
+}
+
+/* === BOTÃO === */
+.btn-ficha {
+    background: var(--azul);
+    color: white;
     border: none;
     border-radius: 8px;
-    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
     transition: background 0.3s ease;
 }
-#btnCriarFicha:hover {
-    background: var(--azul-escuro);
+
+.btn-ficha:hover {
+    background: var(--azul-claro);
+}
+
+/* === LOADING === */
+.loading {
+    color: #555;
+    font-weight: 500;
+}
+
+/* === FOOTER === */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #2563eb;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.3s ease forwards;
+    z-index: 1000;
+}
+
+.toast.erro {
+    background: #dc2626;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === MODAL DE SINTOMAS === */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content h3 {
+    color: #2A418D;
+    margin-bottom: 10px;
+}
+
+.modal-content textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    font-size: 0.95rem;
+    margin-top: 10px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-cancelar,
+.btn-confirmar {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-cancelar {
+    background: #ccc;
+    color: #333;
+}
+
+.btn-confirmar {
+    background: #2563eb;
+    color: #fff;
+}
+
+#descricaoSintomas {
+    width: 90%;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* === RESPONSIVIDADE === */
-@media (max-width: 500px) {
-    body {
-        padding: 20px 10px;
+@media (max-width: 600px) {
+    .topbar {
+        justify-content: space-around;
     }
 
-    #conteudo {
-        padding: 20px;
+    .user-info span {
+        display: none;
     }
 
-    h1 {
-        font-size: 1.4rem;
+    .ficha-section {
+        padding: 1.5rem;
     }
 
-    #conteudo h2 {
+    .ficha-card h2 {
         font-size: 1.2rem;
     }
 }

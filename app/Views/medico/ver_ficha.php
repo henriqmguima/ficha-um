@@ -46,7 +46,18 @@
                             <?= ucfirst($ficha['prioridade_manchester'] ?? 'Indefinida') ?>
                         </span>
                     </p>
+                    <p><strong>Tempo de Espera:</strong>
+                        <?php
+                        $agora = new \DateTime();
+                        $inicio = new \DateTime($ficha['criado_em']);
+                        $diff = $inicio->diff($agora);
+                        echo ($diff->h > 0)
+                            ? $diff->h . 'h ' . $diff->i . 'min'
+                            : $diff->i . ' min';
+                        ?>
+                    </p>
                 </section>
+
 
                 <a href="<?= site_url('medico') ?>" class="btn btn-primary">⬅ Voltar à fila</a>
 

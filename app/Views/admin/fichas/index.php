@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/admin/index.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/admin/modal.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/admin/modal-ficha.css') ?>">
+
     <link rel="shortcut icon" href="<?= base_url('assets/images/logo/favicon.ico') ?>" type="image/x-icon">
 
     <!-- Ícones -->
@@ -19,9 +21,9 @@
     <script defer src="<?= base_url('assets/js/admin/modal_create_usuario.js') ?>"></script>
     <script defer src="<?= base_url('assets/js/admin/modal_create_ficha.js') ?>"></script>
     <script>
-        const API_LISTAR_FICHAS = "<?= site_url('admin/fichas/api-listar') ?>";
+        const API_LISTAR_FICHAS = "<?= site_url('api/admin/fichas/api-listar') ?>";
     </script>
-    <script src="<?= base_url('js/fila_admin.js') ?>"></script>
+    <script src="<?= base_url('assets/js/admin/fila_admin.js') ?>"></script>
 
 
 </head>
@@ -87,10 +89,7 @@
                                             <span class="text-success">✔</span>
                                         <?php endif; ?>
 
-                                        <!-- Excluir -->
-                                        <a href="<?= site_url('admin/fichas/delete/' . $ficha['id']) ?>"
-                                            onclick="return confirm('Tem certeza que deseja excluir esta ficha?')"
-                                            title="Excluir">
+                                        <a href="javascript:void(0);" onclick="abrirModalExclusao(<?= $ficha['id'] ?>)" title="Excluir">
                                             <i class="fa fa-trash" style="color:#b91c1c;"></i>
                                         </a>
                                     </td>
@@ -104,11 +103,44 @@
             <footer class="footer">
                 Logado como <strong><?= esc(session('usuarioLogado')['nome']) ?></strong>
             </footer>
+            <!-- Modal de Confirmação -->
+            <div id="modalConfirmacao" class="modal-overlay-ficha" style="display: none;">
+                <div class="modal-content">
+                    <h3>🗑️ Confirmar exclusão</h3>
+                    <p>Tem certeza de que deseja excluir esta ficha? Esta ação não pode ser desfeita.</p>
+                    <div class="modal-actions">
+                        <button id="btnCancelar" class="btn-cancelar">Cancelar</button>
+                        <button id="btnConfirmar" class="btn-confirmar">Excluir</button>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
     <?= view('admin/fichas/modal_create', ['usuarios' => $usuarios ?? []]) ?>
     <?= view('admin/modal_create_usuario') ?>
+    <script>
+        let idFichaSelecionada = null;
+
+        // Abre o modal
+        function abrirModalExclusao(idFicha) {
+            idFichaSelecionada = idFicha;
+            document.getElementById("modalConfirmacao").style.display = "flex";
+        }
+
+        // Fecha o modal
+        document.getElementById("btnCancelar").addEventListener("click", () => {
+            document.getElementById("modalConfirmacao").style.display = "none";
+            idFichaSelecionada = null;
+        });
+
+        // Confirma exclusão
+        document.getElementById("btnConfirmar").addEventListener("click", () => {
+            if (!idFichaSelecionada) return;
+            window.location.href = `/admin/fichas/delete/${idFichaSelecionada}`;
+        });
+    </script>
+
 </body>
 
 </html>

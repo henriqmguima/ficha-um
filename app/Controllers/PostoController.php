@@ -35,7 +35,7 @@ class PostoController extends BaseController
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
 
-        // 🔹 Criar posto
+        //  Criar posto
         $postoModel = new PostoModel();
         $postoId = $postoModel->insert([
             'cnes'       => $this->request->getPost('cnes'),
@@ -51,7 +51,7 @@ class PostoController extends BaseController
             return redirect()->back()->with('erro', 'Erro ao salvar o posto.');
         }
 
-        // 🔹 Criar diretor vinculado ao posto
+        //  Criar diretor vinculado ao posto
         $usuarioModel = new UsuarioModel();
         $senha = $this->request->getPost('diretor_senha');
         $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
