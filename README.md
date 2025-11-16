@@ -1,4 +1,3 @@
-
 # 📋 Ficha Um
 
 **Ficha Um** é um sistema de gerenciamento de filas para atendimentos em unidades básicas de saúde, desenvolvido com CodeIgniter 4. Ele permite o registro de unidades, criação de fichas de atendimento, controle de status e visualização da posição na fila em tempo real por parte dos usuários.
@@ -9,12 +8,36 @@ A inciativa do projeto veio através de suprir uma demanda do pronto atendimento
 
 ## 🚀 Funcionalidades Principais
 
-- Registro de unidades de saúde
-- Cadastro de Diretor Geral, administradores e usuários comuns (pacientes)
-- Criação e controle de fichas de atendimento
-- Atualização do status das fichas (aguardando, em atendimento, atendido)
-- Visualização da posição na fila em tempo real
-- API RESTful para integração externa
+### Para o Cidadão (Paciente)
+
+- Solicitação de ficha digital remotamente.
+- Visualização da posição na fila em tempo real.
+- Acompanhamento do status do atendimento (aguardando → acolhido → chamado → atendido).
+- Atualização automática via JavaScript.
+
+### Para Diretores / Administração
+
+- Gestão de unidades de saúde (postos).
+- Criação de usuários: diretores, médicos e pacientes.
+- Geração de fichas digitais
+- Visualização de fila de acordo com o tempo de espera
+- Triagem das fichas: sinais vitais, sintomas e prioridade (Manchester).
+- Encaminhamento automático para o médico com menor carga de atendimentos.
+
+### Para Médicos
+
+- Visualização de fichas já triadas com destaque na prioridade e tempo de espera.
+- Visualização de detalhes do caso da ficha.
+- Chamada de pacientes.
+- Encerramento de atendimentos.
+- Contador diário de atendimentos.
+
+### API RESTful
+
+- Criar ficha digital via API.
+- Retornar a ficha ativa do usuário.
+- Listagem completa para debugging/integração.
+- Permite futura integração com aplicativos móveis.
 
 ---
 
@@ -35,6 +58,7 @@ A inciativa do projeto veio através de suprir uma demanda do pronto atendimento
 - Composer
 - MySQL
 - Habilitar as extensões intl e mysqli no php.ini
+
 ---
 
 ## 🧪 Instalação e Execução
@@ -42,8 +66,8 @@ A inciativa do projeto veio através de suprir uma demanda do pronto atendimento
 1. **Clone o repositório**
 
 ```bash
-git clone https://github.com/henriqmguima/gerenciamento-de-fila-para-sa-de
-cd gerenciamento-de-fila-para-sa-de
+git clone https://github.com/henriqmguima/ficha-um
+cd ficha-um
 ```
 
 2. **Instale as dependências**
@@ -68,11 +92,13 @@ database.default.DBDriver = MySQLi
 
 Crie o banco de dados `sistema_filas` na sua máquina
 
-Execute os seguintes comandos no terminal do projeto: 
+Execute os seguintes comandos no terminal do projeto:
 
 ```bash
 php spark migrate --all
-php spark db:seed DemoSeeder
+php spark db:seed PostosSeeder
+php spark db:seed UsuariosSeeder
+php spark db:seed FichasSeeder
 ```
 
 5. **Execute o servidor**
@@ -85,11 +111,16 @@ Acesse: [http://localhost:8080](http://localhost:8080)
 
 ---
 
-## 👥 Acesso ao sistema
+## 👥 Acesso ao Sistema (Seeders)
 
-- **Administrador 1:** `00011122233` — senha: `admin123`
-- **Administrador 2:** `00011122244` — senha: `admin123`
-- **Usuários comuns:** `11122233301`, `11122233302` ... até `11122233305`
+Os seeders criam dezenas de usuários reais.
+📌 Perfis criados automaticamente
+Diretor de cada posto — senha: 123456
+2 médicos por posto — senha: 123456
+Pacientes — senha: 123456
+Para ver todos os logins gerados:
+📄 Banco de dados → tabela usuarios
+✔ Você terá usuários de todos os perfis já prontos para usar.
 
 > A senha de todos os usuários comuns é `usuario123`
 
