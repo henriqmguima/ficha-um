@@ -117,9 +117,11 @@ Os seeders criam dezenas de usuários reais.
 
 ## 📌 Perfis criados automaticamente
 
+```
 > **Diretor** de cada posto | login: `10000000001` — senha: `123456` > **Admin** por posto | login: `20000000001` — senha: `123456`
 > 2 **Médicos** por posto | login: `30000000001` — senha: `123456`
 > 5 **Pacientes** por posto | login: `40000000001` — senha: `123456`
+```
 
 Total: 10 Diretores, 10 Admin, 20 Médicos e 50 Pacientes.
 Para logar em um usuário diferente, mas de mesmo tipo, basta aumentar um algarismo do último digito.
