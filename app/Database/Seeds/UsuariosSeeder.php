@@ -13,9 +13,7 @@ class UsuariosSeeder extends Seeder
         $now = Time::now('America/Sao_Paulo', 'pt_BR')->toDateTimeString();
         $senhaPadrao = password_hash("123456", PASSWORD_DEFAULT);
 
-        // ============================
-        // LISTA REALISTA DE NOMES
-        // ============================
+        // Lista de nomes realistas
         $nomes = [
             "Ana Paula Silva",
             "João Mendes",
@@ -64,14 +62,11 @@ class UsuariosSeeder extends Seeder
             "Joana Barreto",
             "Cristiano Pires",
             "Helena Morais",
-            "Hugo Aragão",
+            "Hugo Aragão"
         ];
+        shuffle($nomes);
 
-        shuffle($nomes); // embaralha lista
-
-        // ============================
-        // CARREGA POSTOS
-        // ============================
+        // Carrega postos
         $postos = $db->table('postos')->get()->getResultArray();
 
         if (empty($postos)) {
@@ -79,52 +74,57 @@ class UsuariosSeeder extends Seeder
             return;
         }
 
-        $usuarios = [];
-        $medicos = [];
+        // CPFs baseados na função
+        $cpfDiretor = 10000000000;
+        $cpfAdmin   = 20000000000;
+        $cpfMedico  = 30000000000;
+        $cpfUsuario = 40000000000;
 
-        $iNome = 0; // ponteiro da lista de nomes
-        $cpfBase = 50000000000;
+        $usuarios = [];
+        $medicosInsert = [];
+        $iNome = 0;
 
         foreach ($postos as $posto) {
 
-            // Slug para criar e-mails únicos
             $slug = strtolower(str_replace(' ', '_', $posto['nome']));
 
-            // -----------------------------------------------------
-            // 1️⃣ DIRETOR (1 por posto)
-            // -----------------------------------------------------
-            $cpfBase++;
-            $nomeDiretor = $nomes[$iNome % count($nomes)];
-            $iNome++;
-            $emailDiretor = $slug . ".diretor@" . rand(1, 999) . ".ubs.com";
-
+            // 1️⃣ Diretor (1 por posto)
+            $cpfDiretor++;
             $usuarios[] = [
-                'cpf'        => strval($cpfBase),
-                'nome'       => $nomeDiretor,
+                'cpf'        => strval($cpfDiretor),
+                'nome'       => $nomes[$iNome++ % count($nomes)],
                 'cartao_sus' => rand(100000000000, 999999999999),
                 'endereco'   => "Rua do Diretor, nº " . rand(10, 500),
-                'email'      => $emailDiretor,
+                'email'      => "{$slug}.diretor@ubs.com",
                 'senha'      => $senhaPadrao,
                 'role'       => 'diretor',
                 'posto_id'   => $posto['id'],
                 'criado_em'  => $now,
             ];
 
-            // -----------------------------------------------------
-            // 2️⃣ MÉDICOS (2 por posto)
-            // -----------------------------------------------------
-            for ($m = 1; $m <= 2; $m++) {
-                $cpfBase++;
-                $nomeMedico = $nomes[$iNome % count($nomes)];
-                $iNome++;
-                $emailMedico = $slug . ".med" . $m . "." . rand(1, 999) . "@ubs.com";
+            // 2️⃣ Admin (1 por posto)
+            $cpfAdmin++;
+            $usuarios[] = [
+                'cpf'        => strval($cpfAdmin),
+                'nome'       => $nomes[$iNome++ % count($nomes)],
+                'cartao_sus' => rand(100000000000, 999999999999),
+                'endereco'   => "Rua do Admin, nº " . rand(10, 500),
+                'email'      => "{$slug}.admin@ubs.com",
+                'senha'      => $senhaPadrao,
+                'role'       => 'admin',
+                'posto_id'   => $posto['id'],
+                'criado_em'  => $now,
+            ];
 
+            // 3️⃣ Médicos (2)
+            for ($m = 1; $m <= 2; $m++) {
+                $cpfMedico++;
                 $usuarios[] = [
-                    'cpf'        => strval($cpfBase),
-                    'nome'       => $nomeMedico,
+                    'cpf'        => strval($cpfMedico),
+                    'nome'       => $nomes[$iNome++ % count($nomes)],
                     'cartao_sus' => rand(100000000000, 999999999999),
                     'endereco'   => "Rua do Médico {$m}, nº " . rand(10, 500),
-                    'email'      => $emailMedico,
+                    'email'      => "{$slug}.med{$m}@ubs.com",
                     'senha'      => $senhaPadrao,
                     'role'       => 'medico',
                     'posto_id'   => $posto['id'],
@@ -132,21 +132,15 @@ class UsuariosSeeder extends Seeder
                 ];
             }
 
-            // -----------------------------------------------------
-            // 3️⃣ PACIENTES (5 por posto)
-            // -----------------------------------------------------
+            // 4️⃣ Pacientes (5)
             for ($p = 1; $p <= 5; $p++) {
-                $cpfBase++;
-                $nomePaciente = $nomes[$iNome % count($nomes)];
-                $iNome++;
-                $emailPaciente = $slug . ".pac" . $p . "." . rand(1, 999) . "@email.com";
-
+                $cpfUsuario++;
                 $usuarios[] = [
-                    'cpf'        => strval($cpfBase),
-                    'nome'       => $nomePaciente,
+                    'cpf'        => strval($cpfUsuario),
+                    'nome'       => $nomes[$iNome++ % count($nomes)],
                     'cartao_sus' => rand(100000000000, 999999999999),
                     'endereco'   => "Rua do Paciente {$p}, nº " . rand(10, 800),
-                    'email'      => $emailPaciente,
+                    'email'      => "{$slug}.pac{$p}@email.com",
                     'senha'      => $senhaPadrao,
                     'role'       => 'usuario',
                     'posto_id'   => $posto['id'],
@@ -155,18 +149,14 @@ class UsuariosSeeder extends Seeder
             }
         }
 
-        // ======================================
-        // Salva todos os usuários
-        // ======================================
+        // Salva usuários
         $db->table('usuarios')->insertBatch($usuarios);
 
-        // Recupera IDs reais
+        // Inserir médicos na tabela 'medicos'
         $usuariosSalvos = $db->table('usuarios')->get()->getResultArray();
-
-        // Criar médicos reais
         foreach ($usuariosSalvos as $user) {
             if ($user['role'] === 'medico') {
-                $medicos[] = [
+                $medicosInsert[] = [
                     'usuario_id'        => $user['id'],
                     'posto_id'          => $user['posto_id'],
                     'max_atendimentos'  => 12,
@@ -177,8 +167,10 @@ class UsuariosSeeder extends Seeder
             }
         }
 
-        $db->table('medicos')->insertBatch($medicos);
+        if (!empty($medicosInsert)) {
+            $db->table('medicos')->insertBatch($medicosInsert);
+        }
 
-        echo "✔️ Seeder com nomes reais, diretores, médicos e pacientes criado com sucesso.\n";
+        echo "✔️ Seeder padronizado com CPFs por função criado com sucesso.\n";
     }
 }
