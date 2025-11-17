@@ -36,7 +36,7 @@
 
 .modal h2 {
     margin-top: 0;
-    color: #14244E;
+    color: #0f4499;
     font-size: 1.4rem;
 }
 
@@ -45,7 +45,7 @@
     display: block;
     margin-top: 12px;
     font-weight: 500;
-    color: #2A418D;
+    color: #3B82F6;
 }
 
 .modal form input,
@@ -60,7 +60,7 @@
 
 .modal form input:focus,
 .modal form select:focus {
-    border-color: #2A418D;
+    border-color: #3B82F6;
     outline: none;
 }
 
@@ -71,7 +71,7 @@
     align-items: center;
     gap: 10px;
     font-weight: 500;
-    color: #2A418D;
+    color: #3B82F6;
     font-size: 0.95rem;
     width: 50%;
 }
@@ -85,7 +85,7 @@ input[type="checkbox"] {
 .modal button[type="submit"] {
     margin-top: 20px;
     padding: 12px 20px;
-    background-color: #2A418D;
+    background-color: #3B82F6;
     color: white;
     border: none;
     border-radius: 6px;
@@ -95,7 +95,7 @@ input[type="checkbox"] {
 }
 
 .modal button[type="submit"]:hover {
-    background-color: #14244E;
+    background-color: #0f4499;
 }
 
 /* === BOTÃO FECHAR === */

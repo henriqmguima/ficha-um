@@ -1,5 +1,5 @@
 :root {
-    --azul: #2A418D;
+    --azul: #3B82F6;
     --azul-claro: #4B66C1;
     --azul-escuro: #1f2d63;
     --cinza: #f4f6fb;
@@ -192,7 +192,7 @@ body {
 }
 
 .modal-content h3 {
-    color: #2A418D;
+    color: #3B82F6;
     margin-bottom: 10px;
 }
 
