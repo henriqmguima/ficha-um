@@ -12,9 +12,7 @@ class FichaSeeder extends Seeder
 {
     public function run()
     {
-        helper('date');
-
-        $postoModel  = new PostoModel();
+        $postoModel   = new PostoModel();
         $usuarioModel = new UsuarioModel();
         $medicoModel  = new MedicoModel();
         $fichaModel   = new FichaModel();
@@ -34,7 +32,7 @@ class FichaSeeder extends Seeder
             "Tontura"
         ];
 
-        // Possíveis sintomas
+        // Sintomas
         $sintomasList = [
             "Dor forte na região abdominal",
             "Febre alta há mais de 2 dias",
@@ -47,11 +45,11 @@ class FichaSeeder extends Seeder
             "Manchas na pele"
         ];
 
-        // Triagem Manchester
+        // Manchester
         $manchester = ["vermelho", "laranja", "amarelo", "verde", "azul"];
 
-        // Template de sinais vitais
-        $sinaisVitaisTemplate = function () {
+        // Sinais vitais
+        $sinaisVitais = function () {
             return json_encode([
                 "temperatura" => rand(36, 40),
                 "pressao"     => rand(80, 130),
@@ -63,33 +61,35 @@ class FichaSeeder extends Seeder
 
         foreach ($postos as $posto) {
 
-            // Pacientes do posto
             $usuarios = $usuarioModel
                 ->where('posto_id', $posto['id'])
                 ->where('role', 'usuario')
                 ->findAll();
 
-            // Médicos do posto
             $medicos = $medicoModel
                 ->where('posto_id', $posto['id'])
                 ->findAll();
 
-            if (empty($usuarios)) continue;
+            if (empty($usuarios)) {
+                continue;
+            }
 
-            // Número de fichas por posto
+            // 🔹 DATA BASE ÚNICA (HOJE às 07:00)
+            $horaBase = strtotime(date('Y-m-d') . ' 18:00:00');
+
+            // Quantidade de fichas
             $totalFichas = rand(8, 15);
 
             for ($i = 0; $i < $totalFichas; $i++) {
 
-                $paciente = $usuarios[array_rand($usuarios)];
-                $tipo = $tipos[array_rand($tipos)];
-                $status = $statusList[array_rand($statusList)];
+                $paciente = $usuarios[$i % count($usuarios)];
+                $tipo     = $tipos[array_rand($tipos)];
+                $status   = $statusList[array_rand($statusList)];
 
-                // Criado nas últimas 24h
-                $timestamp = time() - rand(300, 86400);
-                $criadoEm = date('Y-m-d H:i:s', $timestamp);
+                // ⏱ Horário incremental (não repete)
+                $criadoTimestamp = $horaBase + ($i * rand(5, 10) * 60);
+                $criadoEm = date('Y-m-d H:i:s', $criadoTimestamp);
 
-                // Base da ficha
                 $ficha = [
                     'usuario_id'       => $paciente['id'],
                     'nome_paciente'    => $paciente['nome'],
@@ -99,18 +99,16 @@ class FichaSeeder extends Seeder
                     'status'           => $status,
                     'autenticada'      => ($status === 'aguardando') ? 0 : 1,
                     'criado_em'        => $criadoEm,
+                    'sintomas'         => $sintomasList[array_rand($sintomasList)],
                 ];
 
-                // Sempre preencher sintomas (simula texto do paciente)
-                $ficha['sintomas'] = $sintomasList[array_rand($sintomasList)];
-
-                // Triagem Manchester e sinais vitais somente se passou pela triagem
+                // Triagem
                 if (in_array($status, ['acolhido', 'chamado', 'atendido'])) {
                     $ficha['prioridade_manchester'] = $manchester[array_rand($manchester)];
-                    $ficha['sinais_vitais'] = $sinaisVitaisTemplate();
+                    $ficha['sinais_vitais'] = $sinaisVitais();
                 }
 
-                // status que envolvem médico
+                // Médico
                 if (in_array($status, ['acolhido', 'chamado', 'atendido']) && !empty($medicos)) {
                     $medico = $medicos[array_rand($medicos)];
                     $ficha['medico_id'] = $medico['id'];
@@ -118,18 +116,20 @@ class FichaSeeder extends Seeder
 
                 // Início atendimento
                 if (in_array($status, ['chamado', 'atendido'])) {
-                    $ficha['inicio_atendimento'] = date('Y-m-d H:i:s', $timestamp + rand(120, 1800));
+                    $ficha['inicio_atendimento'] =
+                        date('Y-m-d H:i:s', $criadoTimestamp + rand(5, 15) * 60);
                 }
 
-                // Finalizado
-                if ($status == 'atendido') {
-                    $ficha['fim_atendimento'] = date('Y-m-d H:i:s', $timestamp + rand(1800, 3600));
+                // Fim atendimento
+                if ($status === 'atendido') {
+                    $ficha['fim_atendimento'] =
+                        date('Y-m-d H:i:s', $criadoTimestamp + rand(20, 40) * 60);
                 }
 
                 $fichaModel->insert($ficha);
             }
         }
 
-        echo "✔️ Seeder de fichas COMPLETA criada com sucesso!\n";
+        echo "✔️ Seeder de fichas atualizada (mesmo dia, horários únicos).\n";
     }
 }

@@ -1,0 +1,13 @@
+CRITICAL - 2025-11-29 23:37:08 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "medico/erro.php"
+[Method: GET, Route: medico/ver/1]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('medico/erro.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('medico/erro', [], true)
+ 3 APPPATH\Controllers\MedicoController.php(176): view('medico/erro', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MedicoController->verFicha('1')
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MedicoController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\ficha-um\\public\\index.php')
