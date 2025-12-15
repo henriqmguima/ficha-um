@@ -98,7 +98,7 @@ Execute os seguintes comandos no terminal do projeto:
 php spark migrate --all
 php spark db:seed PostosSeeder
 php spark db:seed UsuariosSeeder
-php spark db:seed FichasSeeder
+php spark db:seed FichaSeeder
 ```
 
 5. **Execute o servidor**
